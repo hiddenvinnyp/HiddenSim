@@ -1,12 +1,15 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 [RequireComponent (typeof(Outline))]
 public class Selectable : MonoBehaviour
 {
+    public static event UnityAction<Selectable> ItemSelected;
+
     [SerializeField] private HiddenItem _prefs;
     public HiddenItem Properties => _prefs;
     private string _name;
+    public string Name => _prefs.Name;
 
     private Outline _outline;
     private bool _isFound = false;
@@ -28,8 +31,9 @@ public class Selectable : MonoBehaviour
     {
         // Ждать, когда герой подойдет, включить анимацию захвата предмета
         // Удалять предмет, помечать найденным в UI списке
-        Debug.Log(_name);
+        Debug.Log("Click on " + _name);
         _isFound = true;
+        ItemSelected?.Invoke(this);
     }
 
     private void OnMouseExit()

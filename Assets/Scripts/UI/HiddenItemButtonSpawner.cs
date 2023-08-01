@@ -1,14 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HiddenItemButtonSpawner : MonoBehaviour
 {
     [SerializeField] private RectTransform _container;
     [SerializeField] private GameObject _buttonPrefab;
-    [SerializeField] private HiddenItemsListGenerator _itemsListGenerator;
+    private HiddenItemsListGenerator _itemsListGenerator;
 
     private void Start()
     {
+        _itemsListGenerator = FindObjectOfType<HiddenItemsListGenerator>();
         GameObject[] allButtons = new GameObject[_container.childCount];
 
         for (int i = 0; i < allButtons.Length; i++)
@@ -23,7 +23,7 @@ public class HiddenItemButtonSpawner : MonoBehaviour
         Debug.Log(_itemsListGenerator.HiddenItemsForSearch().Count);
         foreach (Selectable item in _itemsListGenerator.HiddenItemsForSearch())
         {
-            GameObject button = Instantiate(_buttonPrefab, _container); // взять иконку, имя, подсказку
+            GameObject button = Instantiate(_buttonPrefab, _container);
             IScriptableObjectProperty scriptableObjectProperty = button.GetComponent<IScriptableObjectProperty>();
             scriptableObjectProperty.ApplyProperty(item.Properties);
         }

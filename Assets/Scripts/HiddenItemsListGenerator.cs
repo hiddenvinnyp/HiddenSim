@@ -10,13 +10,14 @@ public class HiddenItemsListGenerator : MonoBehaviour
 
     private void Start()
     {
-        CreateHiddenItemsList();
+        if (_hiddenItemsForSearch.Count == 0)
+            CreateHiddenItemsList();
     }
 
     private List<Selectable> CreateHiddenItemsList()
     {
         _allHiddenItems = FindObjectsByType<Selectable>(FindObjectsSortMode.None);
-
+        print(_allHiddenItems.Length);
         for (int i = 0; i < ((_allHiddenItems.Length < _hiddenItemAmount) ? _allHiddenItems.Length : _hiddenItemAmount); i++)
         {
             _hiddenItemsForSearch.Add(_allHiddenItems[i]);

@@ -36,8 +36,8 @@ public class BootstrapState : IState
         _services.RegisterSingle<IInputService>(InputService());
         _services.RegisterSingle<IAssets>(new AssetProvider());
         _services.RegisterSingle<IProgressService>(new ProgressService());
-        _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IProgressService>(), _services.Single<IGameFactory>()));
         _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssets>()));
+        _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IProgressService>(), _services.Single<IGameFactory>()));
     }
 
     private static IInputService InputService()

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IAssetProvider
+public interface IAssets : IService
 {
     GameObject Instantiate(string path);
     GameObject Instantiate(string path, Vector3 point);

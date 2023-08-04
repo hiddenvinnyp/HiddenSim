@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, ISavedProgress
 {
     [SerializeField] private float _speed;
     [SerializeField] private Animator _animator;
@@ -12,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {        
         _characterController = GetComponent<CharacterController>();
-        _inputService = Game.InputService;
+        _inputService = AllServices.Container.Single<IInputService>();
     }
 
     private void Start()
@@ -47,4 +48,29 @@ public class PlayerMove : MonoBehaviour
 
         _animator.SetBool("IsWalking", _isWalking);
     }
+
+    public void LoadProgress(PlayerProgress progress)
+    {
+        if (CurrentLevel() == progress.WorldData.PositionOnLevel.Level)
+        {
+            Vector3Data savedPosition = progress.WorldData.PositionOnLevel.Position;
+            if (savedPosition != null)              
+                Warp(to: savedPosition);
+        }
+    }
+
+    private void Warp(Vector3Data to)
+    {
+        _characterController.enabled = false;
+        transform.position = to.AsUnityVector();
+        _characterController.enabled = true;
+    }
+
+    public void UpdateProgress(PlayerProgress progress)
+    {
+        progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.AsVectorData());
+    }
+
+    private static string CurrentLevel() =>
+        SceneManager.GetActiveScene().name;
 }

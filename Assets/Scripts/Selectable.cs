@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent (typeof(Outline))]
+[RequireComponent (typeof(OutlineMesh))]
 public class Selectable : MonoBehaviour
 {
     public static event UnityAction<Selectable> ItemSelected;
@@ -11,13 +11,13 @@ public class Selectable : MonoBehaviour
     private string _name;
     public string Name => _prefs.Name;
 
-    private Outline _outline;
+    private OutlineMesh _outline;
     private bool _isFound = false;
     public bool IsFound => _isFound;
 
     private void Start()
     {
-        _outline = GetComponent<Outline>();
+        _outline = GetComponent<OutlineMesh>();
         _outline.enabled = false;
         _name = _prefs.name;
     }
@@ -40,5 +40,4 @@ public class Selectable : MonoBehaviour
     {
         _outline.enabled = false;
     }
-
 }

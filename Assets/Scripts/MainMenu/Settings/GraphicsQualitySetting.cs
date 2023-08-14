@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Settings/GraphicsQualitySetting")]
 public class GraphicsQualitySetting : Setting
 {
     private int currentLevelIndex = 0;

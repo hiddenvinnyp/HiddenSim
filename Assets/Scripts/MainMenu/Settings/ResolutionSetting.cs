@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Settings/ResolutionSetting")]
 public class ResolutionSetting : Setting
 {
     private Resolution[] resolutions = null;

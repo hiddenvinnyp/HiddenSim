@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Settings/AudioMixerFloatSetting")]
 public class AudioMixerFloatSetting : Setting
 {
     [SerializeField] private AudioMixer audioMixer;

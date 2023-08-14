@@ -38,6 +38,15 @@ public class BootstrapState : IState
         _services.RegisterSingle<IProgressService>(new ProgressService());
         _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssets>()));
         _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IProgressService>(), _services.Single<IGameFactory>()));
+        
+        RegisterStaticData();
+    }
+
+    private void RegisterStaticData()
+    {
+        IStaticDataService staticData = new StaticDataService();
+        staticData.LoadEnemies();
+        _services.RegisterSingle(staticData);
     }
 
     private static IInputService InputService()

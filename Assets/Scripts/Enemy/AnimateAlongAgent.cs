@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyAnimator))]
 public class AnimateAlongAgent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float MinVelocity = 0.01f;
+    
+    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private EnemyAnimator _animator;
+
+    private void Update()
     {
-        
+        if (ShouldMove())
+            _animator.Move();
+        else
+            _animator.StopMoving();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool ShouldMove() => 
+        _agent.velocity.magnitude > MinVelocity && _agent.remainingDistance > _agent.radius;
 }

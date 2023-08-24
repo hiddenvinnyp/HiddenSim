@@ -1,5 +1,6 @@
 ﻿public enum EnemyTypeId
 {
         Beetle,
-        Fly,
+        Spider,
+        BlackWidow
 }

@@ -12,5 +12,7 @@ public interface IGameFactory : IService
 
     void Cleanup();
     GameObject CreateCharacter(GameObject initialPoint);
-    void CreateHud();
+    GameObject CreateHud();
+
+    public void Register(ISavedProgressReader progressReader) { }
 }

@@ -25,7 +25,7 @@ public class GameFactory : IGameFactory
         return CharacterGameObject;
     }
 
-    public void CreateHud() =>
+    public GameObject CreateHud() =>
         InstantiateRegistered(AssetPath.HUDPath);
 
     public void Cleanup()
@@ -53,7 +53,7 @@ public class GameFactory : IGameFactory
         foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
             Register(progressReader);
     }
-    private void Register(ISavedProgressReader progressReader)
+    public void Register(ISavedProgressReader progressReader)
     {
         if (progressReader is ISavedProgress progressWriter)
             ProgressWriters.Add(progressWriter);

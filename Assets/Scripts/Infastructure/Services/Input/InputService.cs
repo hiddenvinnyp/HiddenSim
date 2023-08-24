@@ -4,7 +4,7 @@ public abstract class InputService : IInputService
 {
     protected const string Horizontal = "Horizontal";
     protected const string Vertical = "Vertical";
-    private const string Button = "Fire";
+    private const string Button = "FIre1";
     public abstract Vector2 Axis { get; }
     public bool IsAttackButtonUp() => SimpleInput.GetButtonUp(Button);
 

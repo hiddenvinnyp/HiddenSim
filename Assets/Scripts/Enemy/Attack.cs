@@ -10,6 +10,8 @@ public class Attack : MonoBehaviour
     [SerializeField] private float _attackCooldown = 3f;
     [SerializeField] private float _cleavage = 0.5f;
     [SerializeField] private float _effectiveDistance = 0.5f;
+    [SerializeField] private float _damage = 5f;
+    [SerializeField] private GameObject _damageFX;
 
     private IGameFactory _gameFactory;
     private Transform _characterTransform;
@@ -45,12 +47,13 @@ public class Attack : MonoBehaviour
         if (Hit(out Collider hit))
         {
             PhysicsDebug.DrawDebug(StartPoint(), _cleavage, 2);
-            Debug.Log("hit");
+            hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
         }
     }
 
     private void OnAttackEnded()
     {
+        Instantiate(_damageFX, StartPoint(), Quaternion.identity);
         _currentAttackCooldown = _attackCooldown;
         _isAttacking = false;
     }
@@ -74,7 +77,6 @@ public class Attack : MonoBehaviour
     {
         transform.LookAt(_characterTransform);
         _animator.PlayAttack();
-
         _isAttacking = true;
     }
 

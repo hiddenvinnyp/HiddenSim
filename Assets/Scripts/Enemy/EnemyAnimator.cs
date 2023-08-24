@@ -25,6 +25,7 @@ public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
 
     public void PlayTakeDamage() => _animator.SetTrigger(TakeDamage);
     public void PlayDeath() => _animator.SetTrigger(Die);
+
     public void Move() => _animator.SetBool(IsMoving, true);
     public void StopMoving() => _animator.SetBool(IsMoving, false);
     public void PlayAttack() => _animator.SetTrigger(Attack);

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class LoadLevelState : IPayloadedState<string>
 {
-    private const string initialPointTag = "InitialPoint";
+    private const string InitialPointTag = "InitialPoint";
+    private const string EnemySpawnerTag = "EnemySpawner";
     private readonly GameStateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
     private readonly LoadingCurtain _curtain;
@@ -47,10 +48,26 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void InitGameWorld()
     {
-        GameObject character = _gameFactory.CreateCharacter(GameObject.FindWithTag(initialPointTag));
-        _gameFactory.CreateHud();
+        InitSpawners();
 
+        GameObject character = InitCharacter();
+        GameObject hud = _gameFactory.CreateHud();
+        hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
         CamerFollow(character);
+    }
+
+    private GameObject InitCharacter()
+    {
+        return _gameFactory.CreateCharacter(GameObject.FindWithTag(InitialPointTag));
+    }
+
+    private void InitSpawners()
+    {
+        foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
+        {
+            var spawner = spawnerObject.GetComponent<EnemySpawner>();
+            _gameFactory.Register(spawner);
+        }
     }
 
     private static void CamerFollow(GameObject target)

@@ -29,6 +29,15 @@ public class LoadProgressState : IState
         _progressService.Progress = _saveLoadService.LoadProgress() ?? NewProgress();
     }
 
-    private PlayerProgress NewProgress() => 
-        new PlayerProgress(initialLevel: "SampleScene");
+    private PlayerProgress NewProgress()
+    {
+        var progress = new PlayerProgress(initialLevel: "SampleScene");
+
+        progress.CharacterState.MaxHP = 100;
+        progress.WeaponStats.Damage = 5f;
+        progress.WeaponStats.DamageRadius = 0.5f;
+        progress.CharacterState.ResetHP();
+
+        return progress;
+    }
 }

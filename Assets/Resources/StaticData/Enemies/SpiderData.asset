@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe115cac72c8d943a6f3f7518bf5e83, type: 3}
+  m_Name: SpiderData
+  m_EditorClassIdentifier: 
+  EnemyTypeId: 1
+  HP: 10
+  Damage: 3
+  EffectiveDistance: 0.51
+  Cleavege: 0.51
+  MoveSpeed: 3.5
+  Prefab: {fileID: 5189420279400755681, guid: 4c6a05d57a79fbf49b3995887c7e1009, type: 3}

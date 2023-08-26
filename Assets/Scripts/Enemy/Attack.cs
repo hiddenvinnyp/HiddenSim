@@ -7,13 +7,12 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [SerializeField] private EnemyAnimator _animator;
-    [SerializeField] private float _attackCooldown = 3f;
-    [SerializeField] private float _cleavage = 0.5f;
-    [SerializeField] private float _effectiveDistance = 0.5f;
-    [SerializeField] private float _damage = 5f;
+    public float AttackCooldown = 3f;
+    public float Cleavage = 0.5f;
+    public float EffectiveDistance = 0.5f;
+    public float Damage = 5f;
     [SerializeField] private GameObject _damageFX;
 
-    private IGameFactory _gameFactory;
     private Transform _characterTransform;
     private float _currentAttackCooldown;
     private bool _isAttacking;
@@ -25,12 +24,14 @@ public class Attack : MonoBehaviour
 
     public void EnableAttack() => _attackIsActive = true;
 
+    public void Construct(Transform characterTransform)
+    {
+        _characterTransform = characterTransform;
+    }
+
     private void Awake()
     {
-        _gameFactory = AllServices.Container.Single<IGameFactory>();
-
         _layerMask = 1 << LayerMask.NameToLayer("Player");
-        _gameFactory.CharacterCreated += OnCharacterCreated;
     }
 
     private void Update()
@@ -46,21 +47,21 @@ public class Attack : MonoBehaviour
     { 
         if (Hit(out Collider hit))
         {
-            PhysicsDebug.DrawDebug(StartPoint(), _cleavage, 2);
-            hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
+            PhysicsDebug.DrawDebug(StartPoint(), Cleavage, 2);
+            hit.transform.GetComponent<IHealth>().TakeDamage(Damage);
         }
     }
 
     private void OnAttackEnded()
     {
         Instantiate(_damageFX, StartPoint(), Quaternion.identity);
-        _currentAttackCooldown = _attackCooldown;
+        _currentAttackCooldown = AttackCooldown;
         _isAttacking = false;
     }
 
     private bool Hit(out Collider hit)
     {
-        int hitCount = Physics.OverlapSphereNonAlloc(StartPoint(), _cleavage, _hits, _layerMask);
+        int hitCount = Physics.OverlapSphereNonAlloc(StartPoint(), Cleavage, _hits, _layerMask);
 
         hit = _hits.FirstOrDefault();
         return hitCount > 0;
@@ -68,7 +69,7 @@ public class Attack : MonoBehaviour
 
     private Vector3 StartPoint()
     {
-        return new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * _effectiveDistance;
+        return new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * EffectiveDistance;
     }
 
     private bool CooldownIsUp() => _currentAttackCooldown <= 0;
@@ -78,10 +79,5 @@ public class Attack : MonoBehaviour
         transform.LookAt(_characterTransform);
         _animator.PlayAttack();
         _isAttacking = true;
-    }
-
-    private void OnCharacterCreated()
-    {
-        _characterTransform = _gameFactory.CharacterGameObject.transform;
     }
 }

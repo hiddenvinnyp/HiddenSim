@@ -4,6 +4,7 @@
 public class WorldData
 {
     public PositionOnLevel PositionOnLevel;
+    public RewardData RewardData;
 
     public WorldData(string initialLevel)
     {

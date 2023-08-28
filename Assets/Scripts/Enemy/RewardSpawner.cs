@@ -1,18 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RewardSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EnemyDeath _enemyDeath;
+    private IGameFactory _factory;
+    private int _rewardMin;
+    private int _rewardMax;
+
+    public void Construct(IGameFactory factory)
     {
-        
+        _factory = factory;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetReward(int min, int max) 
+    { 
+        _rewardMin = min;
+        _rewardMax = max;
+    }
+
+    private void Start()
     {
-        
+        _enemyDeath.DeathHappend += SpawnReward;
+    }
+
+    private void SpawnReward()
+    {
+        RewardPiece reward = _factory.CreatReward();
+        reward.transform.position = transform.position;
+
+        var rewardItem = new Reward
+        {
+            Value = UnityEngine.Random.Range(_rewardMax, _rewardMin)
+        };
+
+        reward.Initialize(rewardItem);
     }
 }

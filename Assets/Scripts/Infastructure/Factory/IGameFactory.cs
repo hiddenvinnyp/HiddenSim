@@ -11,6 +11,7 @@ public interface IGameFactory : IService
     GameObject CreateCharacter(GameObject initialPoint);
     GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent);
     GameObject CreateHud();
+    RewardPiece CreatReward();
 
     public void Register(ISavedProgressReader progressReader) { }
 }

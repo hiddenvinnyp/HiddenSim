@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,16 +6,32 @@ public class GameFactory : IGameFactory
 {
     private readonly IAssets _assets;
     private readonly IStaticDataService _staticData;
+    private readonly IProgressService _progressService;
 
     public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
     public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
     private GameObject _characterGameObject { get; set; }
 
-    public GameFactory(IAssets assets, IStaticDataService staticDataService)
+    public GameFactory(IAssets assets, IStaticDataService staticDataService, IProgressService progressService)
     {
         _assets = assets;
         _staticData = staticDataService;
+        _progressService = progressService;
+    }
+
+    public void Register(ISavedProgressReader progressReader)
+    {
+        if (progressReader is ISavedProgress progressWriter)
+            ProgressWriters.Add(progressWriter);
+        ProgressReaders.Add(progressReader);
+    }
+
+    public RewardPiece CreatReward()
+    {
+        var rewardPiece = InstantiateRegistered(AssetPath.RewardCoin).GetComponent<RewardPiece>();
+        rewardPiece.Construct(_progressService.Progress.WorldData);
+        return rewardPiece;
     }
 
     public GameObject CreateCharacter(GameObject initialPoint)
@@ -25,8 +40,12 @@ public class GameFactory : IGameFactory
         return _characterGameObject;
     }
 
-    public GameObject CreateHud() =>
-        InstantiateRegistered(AssetPath.HUDPath);
+    public GameObject CreateHud()
+    {
+        GameObject hud = InstantiateRegistered(AssetPath.HUDPath);
+        hud.GetComponentInChildren<CoinCounter>().Construct(_progressService.Progress.WorldData);
+        return hud;
+    }
 
     public GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent)
     {
@@ -41,12 +60,15 @@ public class GameFactory : IGameFactory
         enemy.GetComponent<AgentMoveToPlayer>().Construct(_characterGameObject.transform);
         enemy.GetComponent<NavMeshAgent>().speed = enemyData.MoveSpeed;
 
+        var rewardSpawner = enemy.GetComponentInChildren<RewardSpawner>();
+        rewardSpawner.SetReward(enemyData.MinLoot, enemyData.MaxLoot);
+        rewardSpawner.Construct(this);
+
         var attack = enemy.GetComponent<Attack>();
         attack.Construct(_characterGameObject.transform);
         attack.Damage = enemyData.Damage;
         attack.Cleavage = enemyData.Cleavege;
         attack.EffectiveDistance = enemyData.EffectiveDistance;
-
 
         return enemy;
     }
@@ -75,11 +97,5 @@ public class GameFactory : IGameFactory
     {
         foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
             Register(progressReader);
-    }
-    public void Register(ISavedProgressReader progressReader)
-    {
-        if (progressReader is ISavedProgress progressWriter)
-            ProgressWriters.Add(progressWriter);
-        ProgressReaders.Add(progressReader);
     }
 }

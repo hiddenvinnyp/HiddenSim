@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LoadLevelState : IPayloadedState<string>
 {
@@ -49,11 +48,21 @@ public class LoadLevelState : IPayloadedState<string>
     private void InitGameWorld()
     {
         InitSpawners();
+        InitRewardPieces();
 
         GameObject character = InitCharacter();
         GameObject hud = _gameFactory.CreateHud();
         hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
         CamerFollow(character);
+    }
+
+    private void InitRewardPieces()
+    {
+        foreach (string key in _progressService.Progress.WorldData.RewardData.RewardPiecesOnScene.Dictionary.Keys)
+        {
+            RewardPiece rewardPiece = _gameFactory.CreateReward();
+            rewardPiece.GetComponent<UniqueID>().Id = key;
+        }
     }
 
     private GameObject InitCharacter()

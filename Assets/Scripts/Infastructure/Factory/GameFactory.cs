@@ -98,4 +98,14 @@ public class GameFactory : IGameFactory
         foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
             Register(progressReader);
     }
+
+    public RewardPiece CreateReward()
+    {
+        RewardPiece rewardPiece = InstantiateRegistered(AssetPath.RewardCoin)
+        .GetComponent<RewardPiece>();
+
+        rewardPiece.Construct(_progressService.Progress.WorldData);
+
+        return rewardPiece;
+    }
 }

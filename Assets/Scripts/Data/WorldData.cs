@@ -9,5 +9,6 @@ public class WorldData
     public WorldData(string initialLevel)
     {
         PositionOnLevel = new PositionOnLevel(initialLevel);
+        RewardData = new RewardData();
     }
 }

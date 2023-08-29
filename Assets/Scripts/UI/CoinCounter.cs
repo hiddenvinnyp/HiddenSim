@@ -19,6 +19,6 @@ public class CoinCounter : MonoBehaviour
 
     private void UpdateCounter()
     {
-        _counter.text = _worldData.RewardData.Collected.ToString();
+            _counter.text = _worldData.RewardData.Collected.ToString();
     }
 }

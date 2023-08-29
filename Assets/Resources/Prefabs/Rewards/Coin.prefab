@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 177544788053178233}
   - component: {fileID: 5843835878729301399}
   - component: {fileID: 57934797680940793}
+  - component: {fileID: -2782126944574438865}
   m_Layer: 14
   m_Name: Coin
   m_TagString: Untagged
@@ -266,6 +267,19 @@ MonoBehaviour:
   _pickupFXPrefab: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   _rewardText: {fileID: 3205699154292632281}
   _pickupPopup: {fileID: 464789879848109820}
+--- !u!114 &-2782126944574438865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728095608671766725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7f0a65a83ba8f4ebe61eb8d6630e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 
 --- !u!1 &5153105038581003041
 GameObject:
   m_ObjectHideFlags: 0

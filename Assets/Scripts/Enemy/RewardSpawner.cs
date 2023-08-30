@@ -26,7 +26,7 @@ public class RewardSpawner : MonoBehaviour
 
     private void SpawnReward()
     {
-        RewardPiece reward = _factory.CreatReward();
+        RewardPiece reward = _factory.CreateReward();
         reward.transform.position = transform.position;
 
         var rewardItem = new Reward

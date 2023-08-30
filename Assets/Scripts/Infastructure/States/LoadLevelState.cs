@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadLevelState : IPayloadedState<string>
 {
@@ -9,15 +10,17 @@ public class LoadLevelState : IPayloadedState<string>
     private readonly LoadingCurtain _curtain;
     private readonly IGameFactory _gameFactory;
     private readonly IProgressService _progressService;
+    private readonly IStaticDataService _staticData;
 
     public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 
-        IGameFactory gameFactory, IProgressService progressService)
+        IGameFactory gameFactory, IProgressService progressService, IStaticDataService staticDataService)
     {
         _stateMachine = stateMachine;
         _sceneLoader = sceneLoader;
         _curtain = curtain;
         _gameFactory = gameFactory;
         _progressService = progressService;
+        _staticData = staticDataService;
     }
 
     public void Enter(string sceneName)
@@ -72,10 +75,12 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void InitSpawners()
     {
-        foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
+        string sceneKey = SceneManager.GetActiveScene().name;
+        LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+
+        foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
         {
-            var spawner = spawnerObject.GetComponent<EnemySpawner>();
-            _gameFactory.Register(spawner);
+            _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyTypeId);
         }
     }
 

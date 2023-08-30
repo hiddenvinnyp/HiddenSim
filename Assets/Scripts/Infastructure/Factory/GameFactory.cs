@@ -20,14 +20,14 @@ public class GameFactory : IGameFactory
         _progressService = progressService;
     }
 
-    public void Register(ISavedProgressReader progressReader)
+    private void Register(ISavedProgressReader progressReader)
     {
         if (progressReader is ISavedProgress progressWriter)
             ProgressWriters.Add(progressWriter);
         ProgressReaders.Add(progressReader);
     }
 
-    public RewardPiece CreatReward()
+    public RewardPiece CreateReward()
     {
         var rewardPiece = InstantiateRegistered(AssetPath.RewardCoin).GetComponent<RewardPiece>();
         rewardPiece.Construct(_progressService.Progress.WorldData);
@@ -73,6 +73,14 @@ public class GameFactory : IGameFactory
         return enemy;
     }
 
+    public void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId)
+    {
+        var spawner = InstantiateRegistered(AssetPath.Spawner, position).GetComponent<EnemySpawner>();
+
+        spawner.Id = spawnerId;
+        spawner.EnemyTypeId = enemyTypeId;
+    }
+
     public void Cleanup()
     {
         ProgressReaders.Clear();
@@ -97,15 +105,5 @@ public class GameFactory : IGameFactory
     {
         foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
             Register(progressReader);
-    }
-
-    public RewardPiece CreateReward()
-    {
-        RewardPiece rewardPiece = InstantiateRegistered(AssetPath.RewardCoin)
-        .GetComponent<RewardPiece>();
-
-        rewardPiece.Construct(_progressService.Progress.WorldData);
-
-        return rewardPiece;
     }
 }

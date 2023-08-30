@@ -12,7 +12,5 @@ public interface IGameFactory : IService
     GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent);
     GameObject CreateHud();
     RewardPiece CreateReward();
-    RewardPiece CreatReward();
-
-    public void Register(ISavedProgressReader progressReader) { }
+    void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId);
 }

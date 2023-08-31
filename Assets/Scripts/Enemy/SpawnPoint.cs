@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour, ISavedProgress
+public class SpawnPoint : MonoBehaviour, ISavedProgress
 {
     [SerializeField] private EnemyTypeId _enemyTypeId;
-    private string _id;
+    public string Id { get; set; }
     public bool _slain;
     public EnemyTypeId EnemyTypeId 
     { 
@@ -11,30 +11,20 @@ public class EnemySpawner : MonoBehaviour, ISavedProgress
         set { _enemyTypeId = value; } 
     }
 
-    public string Id
-    {
-        get { return _id; }
-        set { _id = value; }
-    }
-
     private IGameFactory _factory;
     private EnemyDeath _enemyDeath;
 
-    private void Awake()
-    {
-        _id = GetComponent<UniqueID>().Id;
-        _factory = AllServices.Container.Single<IGameFactory>();
-    }
+    public void Construct(IGameFactory factory) => _factory = factory;
 
     public void UpdateProgress(PlayerProgress progress)
     {
         if (_slain)
-            progress.KillData.ClearedSpawners.Add(_id);
+            progress.KillData.ClearedSpawners.Add(Id);
     }
 
     public void LoadProgress(PlayerProgress progress)
     {
-        if (progress.KillData.ClearedSpawners.Contains(_id))
+        if (progress.KillData.ClearedSpawners.Contains(Id))
             _slain = true;
         else
         {

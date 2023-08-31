@@ -75,8 +75,8 @@ public class GameFactory : IGameFactory
 
     public void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId)
     {
-        var spawner = InstantiateRegistered(AssetPath.Spawner, position).GetComponent<EnemySpawner>();
-
+        SpawnPoint spawner = InstantiateRegistered(AssetPath.Spawner, position).GetComponent<SpawnPoint>();
+        spawner.Construct(this);
         spawner.Id = spawnerId;
         spawner.EnemyTypeId = enemyTypeId;
     }

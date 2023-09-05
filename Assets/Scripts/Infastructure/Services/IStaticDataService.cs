@@ -2,5 +2,6 @@
 {
     EnemyStaticData ForEnemy(EnemyTypeId enemyTypeId);
     LevelStaticData ForLevel(string sceneKey);
+    WindowConfig ForWindow(WindowId windowId);
     void LoadEnemies();
 }

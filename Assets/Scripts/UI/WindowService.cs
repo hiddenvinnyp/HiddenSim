@@ -9,12 +9,13 @@
 
     public void Open(WindowId windowId)
     {
-        switch (windowId)
+        _uiFactory.CreateWindow(windowId);
+        /*switch (windowId)
         {
             case WindowId.Unknown:
                 break;
             case WindowId.Shop:
-                _uiFactory.CreateShop();
+                _uiFactory.CreateWindow(windowId);
                 break;
             case WindowId.Pause:
                 _uiFactory.CreatePause();
@@ -24,6 +25,6 @@
                 break;
             default:
                 break;
-        }
+        }*/
     }
 }

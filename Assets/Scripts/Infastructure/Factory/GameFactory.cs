@@ -7,17 +7,19 @@ public class GameFactory : IGameFactory
     private readonly IAssets _assets;
     private readonly IStaticDataService _staticData;
     private readonly IProgressService _progressService;
+    private readonly IWindowService _windowService;
 
     public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
     public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
     private GameObject _characterGameObject { get; set; }
 
-    public GameFactory(IAssets assets, IStaticDataService staticDataService, IProgressService progressService)
+    public GameFactory(IAssets assets, IStaticDataService staticDataService, IProgressService progressService, IWindowService windowService)
     {
         _assets = assets;
         _staticData = staticDataService;
         _progressService = progressService;
+        _windowService = windowService;
     }
 
     private void Register(ISavedProgressReader progressReader)
@@ -44,6 +46,10 @@ public class GameFactory : IGameFactory
     {
         GameObject hud = InstantiateRegistered(AssetPath.HUDPath);
         hud.GetComponentInChildren<CoinCounter>().Construct(_progressService.Progress.WorldData);
+
+        foreach (OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>())
+            button.Construct(_windowService);
+
         return hud;
     }
 

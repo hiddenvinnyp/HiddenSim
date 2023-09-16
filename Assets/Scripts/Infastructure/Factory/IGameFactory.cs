@@ -10,6 +10,7 @@ public interface IGameFactory : IService
     void Cleanup();
     GameObject CreateCharacter(GameObject initialPoint);
     GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent);
+    void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode);
     GameObject CreateHud();
     RewardPiece CreateReward();
     void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId);

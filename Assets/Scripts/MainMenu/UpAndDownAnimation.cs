@@ -8,7 +8,22 @@ public class UpAndDownAnimation : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(transform.position.x, Random.Range(-_maxY, -_maxY*0.5f), transform.position.z);
+        StartLoopAnimation();
+    }
+
+    private void OnEnable()
+    {
+        StartLoopAnimation();
+    }
+
+    private void OnDisable()
+    {
+        transform.DOPause();
+    }
+
+    private void StartLoopAnimation()
+    {
+        transform.position = new Vector3(transform.position.x, Random.Range(-_maxY, -_maxY * 0.5f), transform.position.z);
         transform.DOMoveY(Random.Range(0, _maxY), _animationTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(Random.Range(0, 1f));
     }
 }

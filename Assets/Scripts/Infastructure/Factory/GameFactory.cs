@@ -56,7 +56,7 @@ public class GameFactory : IGameFactory
     public GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent)
     {
         EnemyStaticData enemyData = _staticData.ForEnemy(enemyTypeId);
-        GameObject enemy = UnityEngine.Object.Instantiate(enemyData.Prefab, parent.position, Quaternion.identity);
+        GameObject enemy = Object.Instantiate(enemyData.Prefab, parent.position, Quaternion.identity);
 
         var health = enemy.GetComponent<IHealth>();
         health.CurrentHealth = enemyData.HP;
@@ -85,6 +85,24 @@ public class GameFactory : IGameFactory
         spawner.Construct(this);
         spawner.Id = spawnerId;
         spawner.EnemyTypeId = enemyTypeId;
+    }
+
+    public void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode)
+    {
+        if (position.x % 2 != 0)
+            position.z = 3;
+        position.x *= 1.73f;
+
+        var episodeHex = InstantiateRegistered(AssetPath.EpisodeHex, position).GetComponent<EpisodeHex>();
+        //Debug.Log(episodeHex.GetComponentInChildren<MeshCollider>().bounds.size.x);
+
+        episodeHex.Name = episodeName;
+        episodeHex.Model = episodeVisualModel;
+        episodeHex.MainScene = episodeScene;
+        episodeHex.Levels = levels;
+        episodeHex.NextEpisode = nextEpisode;
+
+        episodeHex.Construct(_progressService.Progress.LevelProgressData);
     }
 
     public void Cleanup()

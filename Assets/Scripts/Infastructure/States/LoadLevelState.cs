@@ -82,7 +82,7 @@ public class LoadLevelState : IPayloadedState<string>
     private void InitSpawners()
     {
         string sceneKey = SceneManager.GetActiveScene().name;
-        LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+        LevelSpawnersStaticData levelData = _staticData.ForLevelSpawners(sceneKey);
 
         foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
         {

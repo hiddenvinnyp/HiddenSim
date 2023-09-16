@@ -7,6 +7,7 @@ public class PlayerProgress
     public WorldData WorldData;
     public CharacterWeaponStats WeaponStats;
     public KillData KillData;
+    public LevelProgressData LevelProgressData;
 
     public PlayerProgress(string initialLevel)
     {
@@ -14,5 +15,6 @@ public class PlayerProgress
         CharacterState = new CharacterState();
         WeaponStats = new CharacterWeaponStats();
         KillData = new KillData();
+        LevelProgressData = new LevelProgressData();
     }
 }

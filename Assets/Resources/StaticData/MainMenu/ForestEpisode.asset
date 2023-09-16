@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5151cb77aa70b504c82f4dae068366e0, type: 3}
+  m_Name: ForestEpisode
+  m_EditorClassIdentifier: 
+  EpisodeName: Forest
+  EpisodeVisualModel: {fileID: 2356602262154068440, guid: 1bbf4df83df52a84d870ed92ba5d2a71, type: 3}
+  EpisodeScene: SampleScene
+  Levels:
+  - {fileID: 11400000, guid: e3ce2c05c4216b742a6c3f615fd87d9c, type: 2}
+  NextEpisode: {fileID: 0}

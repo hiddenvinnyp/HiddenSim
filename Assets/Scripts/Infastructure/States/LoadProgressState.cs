@@ -1,6 +1,4 @@
-﻿using System;
-
-public class LoadProgressState : IState
+﻿public class LoadProgressState : IState
 {
     private readonly GameStateMachine _gameStateMachine;
     private readonly IProgressService _progressService;
@@ -16,7 +14,8 @@ public class LoadProgressState : IState
     public void Enter()
     {
         LoadProgressOrInitNew();
-        _gameStateMachine.Enter<LoadLevelState, string>(_progressService.Progress.WorldData.PositionOnLevel.Level);
+        _gameStateMachine.Enter<LoadMenuState>();
+        //_gameStateMachine.Enter<LoadLevelState, string>(_progressService.Progress.WorldData.PositionOnLevel.Level);
     }
 
     public void Exit()

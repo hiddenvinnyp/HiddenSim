@@ -3,14 +3,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CustomEditor(typeof(LevelStaticData))]
+[CustomEditor(typeof(LevelSpawnersStaticData))]
 public class LevelStaticDataEditor : Editor
 { 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        LevelStaticData levelData = (LevelStaticData)target;
+        LevelSpawnersStaticData levelData = (LevelSpawnersStaticData)target;
 
         if (GUILayout.Button("Collect"))
         {

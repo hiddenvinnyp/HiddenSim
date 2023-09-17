@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HomeEpisode
   m_EditorClassIdentifier: 
   EpisodeName: Home
-  EpisodeVisualModel: {fileID: 2356602262154068440, guid: 1bbf4df83df52a84d870ed92ba5d2a71, type: 3}
+  EpisodeVisualModel: {fileID: 571309321815527776, guid: 83e36df33517f634495d2f87ad0a6d70, type: 3}
   EpisodeScene: SampleScene
   Levels:
   - {fileID: 11400000, guid: 386d93fad52dec94f849d5ea6bd79c24, type: 2}

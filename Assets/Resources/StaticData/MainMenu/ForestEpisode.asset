@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ForestEpisode
   m_EditorClassIdentifier: 
   EpisodeName: Forest
-  EpisodeVisualModel: {fileID: 2356602262154068440, guid: 1bbf4df83df52a84d870ed92ba5d2a71, type: 3}
+  EpisodeVisualModel: {fileID: 588662088281977980, guid: 084aacc0b7074ab4895f1b06173f8756, type: 3}
   EpisodeScene: SampleScene
   Levels:
   - {fileID: 11400000, guid: e3ce2c05c4216b742a6c3f615fd87d9c, type: 2}
   NextEpisode: {fileID: 0}
+  IsFirst: 0

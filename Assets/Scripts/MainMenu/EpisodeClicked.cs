@@ -43,7 +43,7 @@ public class EpisodeClicked : MonoBehaviour, IPointerDownHandler
             {
                 var _levelButton = Instantiate(_levelPrefab);
                 _levelButton.transform.SetParent(_levelMenu.GetComponentInChildren<LayoutGroup>().transform, false);
-                _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(level);
+                _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(_episodeHex.StateMachine, level, _episodeHex.ProgressData, (_episodeHex.IsFirst && level == _episodeHex.Levels[0]));
             }
         }
         else

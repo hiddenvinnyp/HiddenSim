@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class GameStateMachine 
+public class GameStateMachine : IGameStateMachine
 {
     private readonly Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
@@ -35,7 +35,7 @@ public class GameStateMachine
         return _states[typeof(TState)] as TState;
     }
 
-    private TState ChangeState<TState>() where TState: class, IExitableState
+    private TState ChangeState<TState>() where TState : class, IExitableState
     {
         _activeState?.Exit();
         TState state = GetState<TState>();

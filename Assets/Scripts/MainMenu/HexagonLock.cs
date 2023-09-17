@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class HexagonLock : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class HexagonLock : MonoBehaviour
     private MeshRenderer[] items;
     private Material[] _defaultMaterials;
 
-    private void Start()
+    public void Locked(bool isLocked)
     {
         items = gameObject.GetComponentsInChildren<MeshRenderer>();
         _defaultMaterials = new Material[items.Length];
@@ -18,10 +17,7 @@ public class HexagonLock : MonoBehaviour
         {
             _defaultMaterials[i] = items[i].material;
         }
-    }
 
-    public void Locked(bool isLocked)
-    {
         _isLocked = isLocked;
 
         if (isLocked)

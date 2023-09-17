@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class LoadLevelState : IPayloadedState<string>
 {
-    private const string InitialPointTag = "InitialPoint";
-    private const string EnemySpawnerTag = "EnemySpawner";
     private readonly GameStateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
     private readonly LoadingCurtain _curtain;
@@ -56,10 +54,12 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void InitGameWorld()
     {
-        InitSpawners();
+        LevelSpawnersStaticData levelData = _staticData.ForLevelSpawners(SceneManager.GetActiveScene().name);
+
+        InitSpawners(levelData);
         InitRewardPieces();
 
-        GameObject character = InitCharacter();
+        GameObject character = InitCharacter(levelData);
         GameObject hud = _gameFactory.CreateHud();
         hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
         CamerFollow(character);
@@ -74,16 +74,11 @@ public class LoadLevelState : IPayloadedState<string>
         }
     }
 
-    private GameObject InitCharacter()
-    {
-        return _gameFactory.CreateCharacter(GameObject.FindWithTag(InitialPointTag));
-    }
+    private GameObject InitCharacter(LevelSpawnersStaticData levelData) =>
+        _gameFactory.CreateCharacter(levelData.InitialHeroPosition);
 
-    private void InitSpawners()
+    private void InitSpawners(LevelSpawnersStaticData levelData)
     {
-        string sceneKey = SceneManager.GetActiveScene().name;
-        LevelSpawnersStaticData levelData = _staticData.ForLevelSpawners(sceneKey);
-
         foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
         {
             _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyTypeId);

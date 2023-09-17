@@ -8,18 +8,20 @@ public class GameFactory : IGameFactory
     private readonly IStaticDataService _staticData;
     private readonly IProgressService _progressService;
     private readonly IWindowService _windowService;
+    private readonly IGameStateMachine _stateMachine;
 
     public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
     public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
     private GameObject _characterGameObject { get; set; }
 
-    public GameFactory(IAssets assets, IStaticDataService staticDataService, IProgressService progressService, IWindowService windowService)
+    public GameFactory(IAssets assets, IStaticDataService staticDataService, IProgressService progressService, IWindowService windowService, IGameStateMachine stateMachine)
     {
         _assets = assets;
         _staticData = staticDataService;
         _progressService = progressService;
         _windowService = windowService;
+        _stateMachine = stateMachine;
     }
 
     private void Register(ISavedProgressReader progressReader)
@@ -36,9 +38,9 @@ public class GameFactory : IGameFactory
         return rewardPiece;
     }
 
-    public GameObject CreateCharacter(GameObject initialPoint)
+    public GameObject CreateCharacter(Vector3 initialPoint)
     {
-        _characterGameObject = InstantiateRegistered(AssetPath.CharacterPath, initialPoint.transform.position);
+        _characterGameObject = InstantiateRegistered(AssetPath.CharacterPath, initialPoint);
         return _characterGameObject;
     }
 
@@ -87,7 +89,7 @@ public class GameFactory : IGameFactory
         spawner.EnemyTypeId = enemyTypeId;
     }
 
-    public void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode)
+    public void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode, bool isFirst)
     {
         if (position.x % 2 != 0)
             position.z = 3;
@@ -101,8 +103,9 @@ public class GameFactory : IGameFactory
         episodeHex.MainScene = episodeScene;
         episodeHex.Levels = levels;
         episodeHex.NextEpisode = nextEpisode;
+        episodeHex.IsFirst = isFirst;
 
-        episodeHex.Construct(_progressService.Progress.LevelProgressData);
+        episodeHex.Construct(_progressService.Progress.LevelProgressData, _stateMachine);
     }
 
     public void Cleanup()

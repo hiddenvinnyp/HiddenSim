@@ -8,4 +8,5 @@ public class EpisodeStaticData : ScriptableObject
     public string EpisodeScene;
     public LevelStaticData[] Levels;
     public EpisodeStaticData NextEpisode;
+    public bool IsFirst;
 }

@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b888f324f76e2d549a7216589825521f, type: 2}
   - {fileID: 11400000, guid: b6813153b39c8f24ba8042b22157de17, type: 2}
   NextEpisode: {fileID: 11400000, guid: 7fe5cbecbd2929644b6f371ced09b2d0, type: 2}
+  IsFirst: 1

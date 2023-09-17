@@ -44,7 +44,7 @@ public class LoadMenuState : IState
             string episodeName = _staticData.Episodes[i];
  
             EpisodeStaticData episodeData = _staticData.ForEpisode(episodeName);
-            _gameFactory.CreateEpisodeHex(new Vector3(i, 0, 0), episodeName, episodeData.EpisodeVisualModel, episodeData.EpisodeScene, episodeData.Levels, episodeData.NextEpisode);
+            _gameFactory.CreateEpisodeHex(new Vector3(i, 0, 0), episodeName, episodeData.EpisodeVisualModel, episodeData.EpisodeScene, episodeData.Levels, episodeData.NextEpisode, episodeData.IsFirst);
         }
     }
 

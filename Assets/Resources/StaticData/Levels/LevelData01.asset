@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: SampleScene
   EnemySpawners:
+  - Id: SampleScene_c20d9468-ae43-4695-b337-9312243dd952
+    EnemyTypeId: 1
+    Position: {x: -6.9122, y: 0.5, z: -4.128948}
   - Id: SampleScene_33e58c78-614f-4a45-8c81-d3b3e8b07f66
     EnemyTypeId: 1
     Position: {x: -4.8696394, y: 0.5000005, z: 0.03254962}
@@ -23,6 +26,4 @@ MonoBehaviour:
   - Id: SampleScene_f355c715-cb72-4c1a-a0a7-d866b414a1f1
     EnemyTypeId: 1
     Position: {x: -7.259343, y: 0.5, z: 6.435854}
-  - Id: SampleScene_c20d9468-ae43-4695-b337-9312243dd952
-    EnemyTypeId: 1
-    Position: {x: -6.9122, y: 0.5, z: -4.128948}
+  InitialHeroPosition: {x: 0, y: 0, z: -2.75}

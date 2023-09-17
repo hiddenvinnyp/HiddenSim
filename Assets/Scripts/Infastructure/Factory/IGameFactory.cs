@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public interface IGameFactory : IService
@@ -8,9 +7,9 @@ public interface IGameFactory : IService
     List<ISavedProgress> ProgressWriters { get; }
 
     void Cleanup();
-    GameObject CreateCharacter(GameObject initialPoint);
+    GameObject CreateCharacter(Vector3 initialPoint);
     GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent);
-    void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode);
+    void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode, bool isFirst);
     GameObject CreateHud();
     RewardPiece CreateReward();
     void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId);

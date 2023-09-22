@@ -45,7 +45,6 @@ public class EpisodeClicked : MonoBehaviour, IPointerDownHandler
                 _levelButton.transform.SetParent(_levelMenu.GetComponentInChildren<LayoutGroup>().transform, false);
                 _episodeHex.ProgressData.Dictionary.TryGetValue(level.Name, out LevelData levelData);
                 _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(_episodeHex.StateMachine, level, levelData, (_episodeHex.IsFirst && level == _episodeHex.Levels[0]), previousScore > 0);
-                print(levelData);
                 previousScore = levelData.Score;
             }
         }

@@ -1,5 +1,6 @@
 ﻿public class LoadProgressState : IState
 {
+    private const string InitialLevel = "FirstFloor";
     private readonly GameStateMachine _gameStateMachine;
     private readonly IProgressService _progressService;
     private readonly ISaveLoadService _saveLoadService;
@@ -30,12 +31,15 @@
 
     private PlayerProgress NewProgress()
     {
-        var progress = new PlayerProgress(initialLevel: "MainMenu");
+        var progress = new PlayerProgress(initialLevel: InitialLevel);
 
         progress.CharacterState.MaxHP = 100;
+        progress.CharacterState.ResetHP();
         progress.WeaponStats.Damage = 5f;
         progress.WeaponStats.DamageRadius = 0.5f;
-        progress.CharacterState.ResetHP();
+        LevelData levelData = new LevelData();
+        levelData.Score = 0;
+        progress.LevelProgressData.Dictionary.Add(InitialLevel, levelData);
 
         return progress;
     }

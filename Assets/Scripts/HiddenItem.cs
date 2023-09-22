@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "HiddenItem")]
 public class HiddenItem : ScriptableObject

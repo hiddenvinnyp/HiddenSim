@@ -1,0 +1,1 @@
+﻿public class HiddenObjectDataDictionary : DictionaryData_Base<string, bool> { }

@@ -30,7 +30,7 @@
 
     private PlayerProgress NewProgress()
     {
-        var progress = new PlayerProgress(initialLevel: "SampleScene");
+        var progress = new PlayerProgress(initialLevel: "MainMenu");
 
         progress.CharacterState.MaxHP = 100;
         progress.WeaponStats.Damage = 5f;

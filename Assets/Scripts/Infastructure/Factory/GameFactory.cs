@@ -89,7 +89,7 @@ public class GameFactory : IGameFactory
         spawner.EnemyTypeId = enemyTypeId;
     }
 
-    public void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode, bool isFirst)
+    public void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, EpisodeStaticData nextEpisode, bool isFirst, bool isPrevousEpisodeDone)
     {
         if (position.x % 2 != 0)
             position.z = 3;
@@ -104,6 +104,7 @@ public class GameFactory : IGameFactory
         episodeHex.Levels = levels;
         episodeHex.NextEpisode = nextEpisode;
         episodeHex.IsFirst = isFirst;
+        episodeHex.IsPrevousEpisodeDone = isPrevousEpisodeDone;
 
         episodeHex.Construct(_progressService.Progress.LevelProgressData, _stateMachine);
     }

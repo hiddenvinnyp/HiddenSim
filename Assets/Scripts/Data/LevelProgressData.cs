@@ -1,7 +1,6 @@
 using System;
 
 [Serializable]
-public class LevelProgressData : DictionaryData_Base<string, int>
+public class LevelProgressData : DictionaryData_Base<string, LevelData>
 {
-
 }

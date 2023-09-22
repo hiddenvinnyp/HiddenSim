@@ -1,5 +1,4 @@
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -39,11 +38,15 @@ public class EpisodeClicked : MonoBehaviour, IPointerDownHandler
         {
             _levelMenu = Instantiate(_levelMenuPrefab);
             _levelMenu.GetComponentInChildren<Button>().onClick.AddListener(EpisodeMenuExit);
+            int previousScore = 0;
             foreach(var level in _episodeHex.Levels)
             {
                 var _levelButton = Instantiate(_levelPrefab);
                 _levelButton.transform.SetParent(_levelMenu.GetComponentInChildren<LayoutGroup>().transform, false);
-                _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(_episodeHex.StateMachine, level, _episodeHex.ProgressData, (_episodeHex.IsFirst && level == _episodeHex.Levels[0]));
+                _episodeHex.ProgressData.Dictionary.TryGetValue(level.Name, out LevelData levelData);
+                _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(_episodeHex.StateMachine, level, levelData, (_episodeHex.IsFirst && level == _episodeHex.Levels[0]), previousScore > 0);
+                print(levelData);
+                previousScore = levelData.Score;
             }
         }
         else

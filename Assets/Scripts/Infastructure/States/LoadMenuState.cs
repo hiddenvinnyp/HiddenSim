@@ -39,12 +39,22 @@ public class LoadMenuState : IState
 
     private void InitEpisodes()
     {
+        bool isPrevousEpisodeDone = false;
         for (int i = 0; i < _staticData.Episodes.Length; i++)
         {
             string episodeName = _staticData.Episodes[i];
  
             EpisodeStaticData episodeData = _staticData.ForEpisode(episodeName);
-            _gameFactory.CreateEpisodeHex(new Vector3(i, 0, 0), episodeName, episodeData.EpisodeVisualModel, episodeData.EpisodeScene, episodeData.Levels, episodeData.NextEpisode, episodeData.IsFirst);
+            _gameFactory.CreateEpisodeHex(new Vector3(i, 0, 0), episodeName, 
+                                            episodeData.EpisodeVisualModel, 
+                                            episodeData.EpisodeScene, // doesn't use in this version
+                                            episodeData.Levels, 
+                                            episodeData.NextEpisode, 
+                                            episodeData.IsFirst,
+                                            isPrevousEpisodeDone);
+            string lastLevel = episodeData.Levels[episodeData.Levels.Length - 1].Name;
+            _progressService.Progress.LevelProgressData.Dictionary.TryGetValue(lastLevel, out LevelData levelData);
+            isPrevousEpisodeDone = levelData?.Score > 0; // TODO test when saveload of levelprog will be done
         }
     }
 

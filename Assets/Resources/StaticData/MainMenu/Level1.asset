@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff14b513297c994caed922961c7f3aa, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  Name: Bedroom
+  Name: Kitchen
   Icon: {fileID: 21300022, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   Score: 3
-  SceneName: SampleScene
+  SceneName: FirstFloor

@@ -6,13 +6,15 @@ public class UIFactory : IUIFactory
     private readonly IAssets _assets;
     private readonly IStaticDataService _staticData;
     private readonly IProgressService _progressService;
+    private readonly IGameStateMachine _stateMachine;
     private Transform _uiRoot;
 
-    public UIFactory(IAssets assets, IStaticDataService staticData, IProgressService progressService)
+    public UIFactory(IAssets assets, IStaticDataService staticData, IProgressService progressService, IGameStateMachine stateMachine)
     {
         _assets = assets;
         _staticData = staticData;
         _progressService = progressService;
+        _stateMachine = stateMachine;
     }
 
     public void CreateUIRoot() => 
@@ -22,6 +24,6 @@ public class UIFactory : IUIFactory
     {
         WindowConfig config = _staticData.ForWindow(windowId);
         WindowBase window = Object.Instantiate(config.WindowPrefab, _uiRoot);
-        window.Construct(_progressService);
+        window.Construct(_progressService, _stateMachine);
     }
 }

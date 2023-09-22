@@ -5,12 +5,14 @@ public abstract class WindowBase : MonoBehaviour
 {
     public Button CloseButton;
     protected IProgressService ProgressService;
+    protected IGameStateMachine StateMachine;
     protected PlayerProgress Progress => ProgressService.Progress;
 
 
-    public void Construct(IProgressService progressService)
+    public void Construct(IProgressService progressService, IGameStateMachine stateMachine)
     {
         ProgressService = progressService;
+        StateMachine = stateMachine;
     }
 
     private void Awake()

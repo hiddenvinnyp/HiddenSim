@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b4e5f29674a794e8da9f2a69372c96, type: 3}
+  m_Name: LevelData02
+  m_EditorClassIdentifier: 
+  LevelKey: FirstFloor
+  EnemySpawners:
+  - Id: FirstFloor_28069702-d837-4535-8c09-03e5a18c214c
+    EnemyTypeId: 1
+    Position: {x: 5.406007, y: 0.5101032, z: 4.804435}
+  - Id: FirstFloor_d9d43401-8353-45eb-8cf4-d81141bc83fd
+    EnemyTypeId: 2
+    Position: {x: -4.779787, y: 0.5101013, z: -2.0358715}
+  - Id: FirstFloor_78000f55-eb38-43ab-9ac4-8bdf228caf1c
+    EnemyTypeId: 1
+    Position: {x: -5.36, y: 0.5101032, z: 5.38}
+  InitialHeroPosition: {x: 6, y: 0.58, z: -3}

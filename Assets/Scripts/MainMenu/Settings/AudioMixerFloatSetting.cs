@@ -15,6 +15,7 @@ public class AudioMixerFloatSetting : Setting
     [SerializeField] private float maxVirtualValue;
 
     private float currentValue = 0;
+    private float bufferValue;
 
     public override bool IsMaxValue { get => currentValue == maxRealValue; }
     public override bool IsMinValue { get => currentValue == minRealValue; }
@@ -48,6 +49,18 @@ public class AudioMixerFloatSetting : Setting
     public override void Load()
     {
         currentValue = PlayerPrefs.GetFloat(title, 0);
+    }
+    public void TurnOn()
+    {
+        currentValue = bufferValue;
+        Apply();
+    }
+
+    public void TurnOff()
+    {
+        bufferValue = currentValue;
+        currentValue = minRealValue;
+        Apply();
     }
 
     private void Save()

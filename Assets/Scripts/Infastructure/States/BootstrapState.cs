@@ -43,7 +43,8 @@ public class BootstrapState : IState
         _services.RegisterSingle<IUIFactory>(new UIFactory(
             _services.Single<IAssets>(), 
             _services.Single<IStaticDataService>(), 
-            _services.Single<IProgressService>()));
+            _services.Single<IProgressService>(),
+            _services.Single<IGameStateMachine>()));
 
         _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
         
@@ -55,6 +56,7 @@ public class BootstrapState : IState
             _services.Single<IGameStateMachine>()));
 
         _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IProgressService>(), _services.Single<IGameFactory>()));
+        _services.RegisterSingle<IHiddenItemsService>(new HiddenItemsService(_services.Single<IProgressService>(), _services.Single<IStaticDataService>()));
     }
 
     private void RegisterStaticData()

@@ -8,10 +8,12 @@ public class HiddenItemsService : IHiddenItemsService
 
     private readonly IProgressService _progressService;
     private readonly IStaticDataService _staticData;
-
+    private string _sceneName;
     private List<string> _selectedItemsIds = new List<string>();
+    private List<HiddenItemData> hiddenItems = new List<HiddenItemData>();
 
     public List<string> SelectedItemsIds => _selectedItemsIds;
+
 
     public HiddenItemsService(IProgressService progressService, IStaticDataService staticDataService)
     {
@@ -21,7 +23,8 @@ public class HiddenItemsService : IHiddenItemsService
 
     public void InitHiddenItems(string sceneName)
     {
-        List<HiddenItemData> hiddenItems = _staticData.ForLevelSpawners(sceneName).HiddenItems; // все предметы, доступные для поиска
+        _sceneName = sceneName;
+        hiddenItems = _staticData.ForLevelSpawners(sceneName).HiddenItems; // все предметы, доступные для поиска
         
         if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(sceneName, out LevelData levelData)) // сохраненные, если есть
         {
@@ -31,8 +34,7 @@ public class HiddenItemsService : IHiddenItemsService
         {
             _selectedItemsIds = SelectItemsForSearch(hiddenItems, _staticData.ForLevel(sceneName).HiddenAmount);
             SaveItems(_selectedItemsIds);
-        }
-            
+        }            
     }
 
     public bool IsItemInList(string id)
@@ -40,6 +42,7 @@ public class HiddenItemsService : IHiddenItemsService
         if (_selectedItemsIds.Contains(id))
         {
             FoundItem?.Invoke(id);
+            Save(id);
             return true;
         }
         return false;
@@ -49,7 +52,22 @@ public class HiddenItemsService : IHiddenItemsService
     {
         if (!IsItemInList(id)) return false;
 
-        if ()
+        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(_sceneName, out LevelData levelData))
+        {
+            levelData.HiddenObjectDataDictionary.Dictionary.TryGetValue(id, out bool found);
+            return found;
+        }
+        return false;
+    }
+
+    public HiddenItem GetProperty(string id) //find in static data
+    {
+        foreach (var item in _staticData.ForLevelSpawners(_sceneName).HiddenItems)
+        {
+            if (item.Id == id)
+                return item.Prefs;
+        }
+        return null;
     }
 
     public bool TryGetFoundItemsAmount(string sceneName, out int foundAmount)
@@ -66,6 +84,11 @@ public class HiddenItemsService : IHiddenItemsService
     }
 
     private void SaveItems(List<string> selectedItemsIds)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Save(string id)
     {
         throw new NotImplementedException();
     }

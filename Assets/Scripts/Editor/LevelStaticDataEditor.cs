@@ -19,7 +19,7 @@ public class LevelStaticDataEditor : Editor
                 .Select(x=>new EnemySpawnerData(x.GetComponent<UniqueID>().Id, x.EnemyTypeId, x.transform.position))
                 .ToList();
             levelData.HiddenItems = FindObjectsOfType<Findable>()
-                .Select(x => new HiddenItemData(x.GetComponent<UniqueID>().Id, x.Prefs.Name, x.Prefs.Hint, x.Prefs.Icon))
+                .Select(x => new HiddenItemData(x.GetComponent<UniqueID>().Id, x.Prefs))
                 .ToList();
             levelData.LevelKey = SceneManager.GetActiveScene().name;
             levelData.InitialHeroPosition = GameObject.FindWithTag(InitialPointTag).transform.position;

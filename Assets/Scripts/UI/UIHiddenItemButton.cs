@@ -1,18 +1,18 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] private HiddenItem _prefs;
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _hint;
     [SerializeField] private GameObject _namePanel;
     [SerializeField] private GameObject _hintPanel;
     [SerializeField] private Image _found;
+    private HiddenItem _prefs;
+
     public string Name => _prefs.Name;
 
     private void Start()
@@ -20,7 +20,6 @@ public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPoi
         _found.enabled = false;
         _namePanel.SetActive(false);
         _hintPanel.SetActive(false);
-        //ApplyProperty(_prefs);
     }    
 
     public void ApplyProperty(ScriptableObject property)

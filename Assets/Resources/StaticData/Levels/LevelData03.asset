@@ -24,3 +24,4 @@ MonoBehaviour:
     EnemyTypeId: 1
     Position: {x: -5.36, y: 0.5101032, z: 5.38}
   InitialHeroPosition: {x: 6, y: 0.58, z: -3}
+  HiddenItems: []

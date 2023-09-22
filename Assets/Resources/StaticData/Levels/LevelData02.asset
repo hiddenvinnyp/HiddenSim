@@ -14,13 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: FirstFloor
   EnemySpawners:
-  - Id: FirstFloor_28069702-d837-4535-8c09-03e5a18c214c
-    EnemyTypeId: 1
-    Position: {x: 5.406007, y: 0.5101032, z: 4.804435}
   - Id: FirstFloor_d9d43401-8353-45eb-8cf4-d81141bc83fd
     EnemyTypeId: 2
     Position: {x: -4.779787, y: 0.5101013, z: -2.0358715}
   - Id: FirstFloor_78000f55-eb38-43ab-9ac4-8bdf228caf1c
     EnemyTypeId: 1
     Position: {x: -5.36, y: 0.5101032, z: 5.38}
+  - Id: FirstFloor_28069702-d837-4535-8c09-03e5a18c214c
+    EnemyTypeId: 1
+    Position: {x: 5.406007, y: 0.5101032, z: 4.804435}
   InitialHeroPosition: {x: 6, y: 0.58, z: -3}
+  HiddenItems:
+  - Id: FirstFloor_49509bdf-b670-49d4-a78b-ba4c28875e99
+    Prefs: {fileID: 11400000, guid: db3c3ec2f6ef0fa4f9d88c8f515fbcc9, type: 2}
+  - Id: FirstFloor_bc238fad-4466-4027-b530-aa04a9fbf0e9
+    Prefs: {fileID: 11400000, guid: 64adfce21ec70584faa204f000da91b1, type: 2}

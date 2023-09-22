@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Garden
   Icon: {fileID: 21300000, guid: 313bd1bdad2d49d4e812ba09b35cad76, type: 3}
-  Score: 2
   SceneName: SampleScene
+  HiddenAmount: 15

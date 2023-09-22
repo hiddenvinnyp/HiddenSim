@@ -5,15 +5,11 @@ using UnityEngine;
 public class HiddenItemData
 {
     public string Id;
-    public string Name;
-    public string Hint;
-    public Sprite Icon;
+    public HiddenItem Prefs;
 
-    public HiddenItemData(string id, string name, string hint, Sprite icon)
+    public HiddenItemData(string id, HiddenItem prefs)
     {
         Id = id;
-        Name = name;
-        Hint = hint;
-        Icon = icon;
+        Prefs = prefs;
     }
 }

@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5072f49b4dc5b0540b4725e37cf79ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelName: {fileID: 1328334619835932706}
+  _levelNameText: {fileID: 1328334619835932706}
   _icon: {fileID: 5401384320702623458}
   _starsPlace: {fileID: 2019786345837591783}
   _lockImage: {fileID: 7325657410171978616}

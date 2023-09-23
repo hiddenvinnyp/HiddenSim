@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class LevelButton : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _levelName;
+    [SerializeField] private TextMeshProUGUI _levelNameText;
     [SerializeField] private Image _icon;
     [SerializeField] private Image _starsPlace;
     [SerializeField] private Image _lockImage;
@@ -15,28 +15,26 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private Sprite _twoStars;
     [SerializeField] private Sprite _threeStars;
 
-    private string _sceneName;
+    private string _levelName;
     private IGameStateMachine _stateMachine;
-    private bool _isOpened = false;
-    private bool _isFirst;
-    private bool _isNextAfterLastOpened;
+    private bool _isLocked;
 
-    public void ApplyProperty(IGameStateMachine stateMachine, LevelStaticData levelStaticData, LevelData levelProgress, bool isFirst, bool isNextAfterLastOpened = false)
+    public void ApplyProperty(IGameStateMachine stateMachine, LevelStaticData levelStaticData, LevelData levelProgress, bool isLocked)
     {
         _stateMachine = stateMachine;
-        _levelName.text = levelStaticData.Name;
+        _levelName = levelStaticData.Name;
+        
+        _levelNameText.text = _levelName;
         _icon.sprite = levelStaticData.Icon;
-        _sceneName = levelStaticData.SceneName;
         _starsPlace.sprite = _noStars;
-        _isFirst = isFirst;
-        _isNextAfterLastOpened = isNextAfterLastOpened;
+        _isLocked = isLocked;
 
         int stars = 0;
         //TODO проверить после добавления сохранения leveldata
         if (levelProgress != null)
         {
             stars = levelProgress.Score;
-            print("stars " + stars);
+
             switch (stars)
             {
                 case 0:
@@ -58,19 +56,15 @@ public class LevelButton : MonoBehaviour
             }
         }
 
-        // TODO test _isNextAfterLastOpened after save/load levelProgress will be done
-        if (stars > 0 || _isFirst || _isNextAfterLastOpened)
+        if (!_isLocked)
         {
-            _isOpened = true;
             _lockImage.gameObject.SetActive(false);
-        }
-
-        if (_isOpened)
             gameObject.GetComponentInChildren<Button>().onClick.AddListener(OpenScene);
+        }
     }
 
     private void OpenScene()
     {
-        _stateMachine.Enter<LoadLevelState, string>(_sceneName);
+        _stateMachine.Enter<LoadLevelState, string>(_levelName);
     }
 }

@@ -7,6 +7,4 @@ public class EpisodeStaticData : ScriptableObject
     public GameObject EpisodeVisualModel;
     public string EpisodeScene;
     public LevelStaticData[] Levels;
-    public EpisodeStaticData NextEpisode;
-    public bool IsFirst;
 }

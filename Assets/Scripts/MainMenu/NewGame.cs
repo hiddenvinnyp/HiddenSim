@@ -10,7 +10,7 @@ public class NewGame : MonoBehaviour
     {
         _stateMachine = AllServices.Container.Single<IGameStateMachine>();
         _staticData = AllServices.Container.Single<IStaticDataService>();
-        GetFirstLevelName();
+        _firstLevelName = GetFirstLevelName();
     }
 
     public void CleanUpProgress()
@@ -24,16 +24,6 @@ public class NewGame : MonoBehaviour
         _stateMachine.Enter<LoadLevelState, string>(_firstLevelName);
     }
 
-    private string GetFirstLevelName()
-    {
-        foreach (var episode in _staticData.Episodes)
-        {
-            EpisodeStaticData episodeData = _staticData.ForEpisode(episode);
-            if (episodeData.IsFirst)
-            {
-                _firstLevelName = episodeData.Levels[0].SceneName;
-            }
-        }
-        return _firstLevelName;
-    }
+    private string GetFirstLevelName() =>
+        _staticData.ForGamePlan().Episodes[0].Levels[0].Name;
 }

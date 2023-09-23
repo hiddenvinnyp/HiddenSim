@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 public class LoadMenuState : IState
 {
     private readonly GameStateMachine _stateMachine;
@@ -39,22 +41,29 @@ public class LoadMenuState : IState
 
     private void InitEpisodes()
     {
-        bool isPrevousEpisodeDone = false;
-        for (int i = 0; i < _staticData.Episodes.Length; i++)
+        EpisodeStaticData[] episodes = _staticData.ForGamePlan().Episodes;
+        for (int i = 0; i < episodes.Length; i++)
         {
-            string episodeName = _staticData.Episodes[i];
- 
-            EpisodeStaticData episodeData = _staticData.ForEpisode(episodeName);
+            bool isLocked = true;
+            string episodeName = episodes[i].EpisodeName;
+
+            // TODO: добавить проверку на последний доступный уровень, ведь у него тоже скор == 0
+            //if (!IsFirst
+            //||(levelData.Dictionary.TryGetValue(Levels[0].Name, out LevelData level) && level.Score == 0)
+            //|| (!IsPrevousEpisodeDone && !IsFirst))
+
+            if (i == 0 
+                || (i > 0 && (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(
+                episodes[i - 1].Levels.Last().Name, out LevelData levelData) && levelData.Score > 0)))
+            {
+                isLocked = false;
+            }
+            EpisodeStaticData episodeData = episodes[i]; // _staticData.ForEpisode(episodeName);
             _gameFactory.CreateEpisodeHex(new Vector3(i, 0, 0), episodeName, 
                                             episodeData.EpisodeVisualModel, 
                                             episodeData.EpisodeScene, // doesn't use in this version
-                                            episodeData.Levels, 
-                                            episodeData.NextEpisode, 
-                                            episodeData.IsFirst,
-                                            isPrevousEpisodeDone);
-            string lastLevel = episodeData.Levels[episodeData.Levels.Length - 1].Name;
-            _progressService.Progress.LevelProgressData.Dictionary.TryGetValue(lastLevel, out LevelData levelData);
-            isPrevousEpisodeDone = levelData?.Score > 0; // TODO test when saveload of levelprog will be done
+                                            episodeData.Levels,
+                                            isLocked);
         }
     }
 

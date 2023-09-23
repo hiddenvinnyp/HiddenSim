@@ -7,11 +7,9 @@ public class EpisodeHex : MonoBehaviour
     [HideInInspector] public GameObject Model;
     [HideInInspector] public string MainScene;
     [HideInInspector] public LevelStaticData[] Levels;
-    [HideInInspector] public EpisodeStaticData NextEpisode;
     [HideInInspector] public LevelProgressData ProgressData;
     [HideInInspector] public IGameStateMachine StateMachine;
-    [HideInInspector] public bool IsFirst;
-    [HideInInspector] public bool IsPrevousEpisodeDone;
+    [HideInInspector] public bool IsLocked;
 
     [SerializeField] private TextMeshProUGUI _episodeNameText;
     [SerializeField] private Transform _modelParent;
@@ -24,9 +22,6 @@ public class EpisodeHex : MonoBehaviour
         _episodeNameText.text = Name;
         GameObject model = Instantiate(Model, _modelParent);
         model.transform.SetParent(_modelParent, false);
-
-        // TODO: добавить проверку на последний доступный уровень, ведь у него тоже скор == 0
-        if (!IsFirst || (levelData.Dictionary.TryGetValue(Levels[0].Name, out LevelData level) && level.Score == 0) || (!IsPrevousEpisodeDone && !IsFirst))
-            GetComponent<HexagonLock>().Locked(true);
+        GetComponent<HexagonLock>().Locked(IsLocked);
     }
 }

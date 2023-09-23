@@ -13,7 +13,7 @@ public class GameStateMachine : IGameStateMachine
             [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
             [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, services.Single<IGameFactory>(), services.Single<IProgressService>(), services.Single<IStaticDataService>(), services.Single<IUIFactory>(), services.Single<IHiddenItemsService>()),
             [typeof(LoadMenuState)] = new LoadMenuState(this, sceneLoader, curtain, services.Single<IGameFactory>(), services.Single<IProgressService>(), services.Single<IStaticDataService>()),
-            [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IProgressService>(), services.Single<ISaveLoadService>()),
+            [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IProgressService>(), services.Single<ISaveLoadService>(), services.Single<IStaticDataService>()),
             [typeof(GameLoopState)] = new GameLoopState(this),
         };
     }

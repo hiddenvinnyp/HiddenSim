@@ -6,7 +6,7 @@ public class ItemsPanelUI : MonoBehaviour
 {
     [SerializeField] private GameObject _buttonPrefab;
     private IHiddenItemsService _hiddenItemsService;
-    private Dictionary<string, UIHiddenItemButton> _buttons;
+    private Dictionary<string, UIHiddenItemButton> _buttons = new Dictionary<string, UIHiddenItemButton>();
 
     public void Construct(IHiddenItemsService hiddenItemsService)
     {
@@ -23,7 +23,7 @@ public class ItemsPanelUI : MonoBehaviour
             HiddenItem property = _hiddenItemsService.GetProperty(id);
             GameObject button = Instantiate(_buttonPrefab, transform);
             UIHiddenItemButton buttonUI = button.GetComponent<UIHiddenItemButton>();
-            button.GetComponent<UIHiddenItemButton>().ApplyProperty(property);
+            buttonUI.ApplyProperty(property);
             _buttons.Add(id, buttonUI);
         }  
     }

@@ -25,10 +25,10 @@ public class EpisodeClicked : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (_episodeHex.IsLocked) return;
         if (_isSelected) return; 
 
         _isSelected = true;
-        Debug.Log("click " + gameObject.name);
         _animation.enabled = false;
 
         _camera.transform.DOMove(transform.position + new Vector3(-5f,3f,2f), _cameraSpeed);
@@ -39,12 +39,19 @@ public class EpisodeClicked : MonoBehaviour, IPointerDownHandler
             _levelMenu = Instantiate(_levelMenuPrefab);
             _levelMenu.GetComponentInChildren<Button>().onClick.AddListener(EpisodeMenuExit);
             int previousScore = 0;
-            foreach(var level in _episodeHex.Levels)
+            foreach(LevelStaticData level in _episodeHex.Levels)
             {
                 var _levelButton = Instantiate(_levelPrefab);
                 _levelButton.transform.SetParent(_levelMenu.GetComponentInChildren<LayoutGroup>().transform, false);
                 _episodeHex.ProgressData.Dictionary.TryGetValue(level.Name, out LevelData levelData);
-                _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(_episodeHex.StateMachine, level, levelData, (_episodeHex.IsFirst && level == _episodeHex.Levels[0]), previousScore > 0);
+
+                bool isLocked = true;
+                
+                if (previousScore > 0) isLocked = false;
+                if (_episodeHex.Levels[0].Name == level.Name && !_episodeHex.IsLocked) isLocked = false;
+                _levelButton.GetComponentInChildren<LevelButton>().ApplyProperty(_episodeHex.StateMachine, 
+                    level, levelData, isLocked);               
+                
                 previousScore = levelData.Score;
             }
         }

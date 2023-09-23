@@ -11,6 +11,7 @@ public class LoadLevelState : IPayloadedState<string>
     private readonly IStaticDataService _staticData;
     private readonly IUIFactory _uiFactory;
     private readonly IHiddenItemsService _hiddenItemsService;
+    private string _levelName;
 
     public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
         IGameFactory gameFactory, IProgressService progressService, IStaticDataService staticDataService, IUIFactory uiFactory, IHiddenItemsService hiddenItemsService)
@@ -25,8 +26,10 @@ public class LoadLevelState : IPayloadedState<string>
         _hiddenItemsService = hiddenItemsService;
     }
 
-    public void Enter(string sceneName)
+    public void Enter(string levelName)
     {
+        _levelName = levelName;
+        string sceneName = _staticData.ForLevel(levelName).SceneName;
         _curtain.Show();
         _gameFactory.Cleanup();
         _sceneLoader.Load(sceneName, OnLoaded);
@@ -59,15 +62,16 @@ public class LoadLevelState : IPayloadedState<string>
         string sceneName = SceneManager.GetActiveScene().name;
         LevelSpawnersStaticData levelData = _staticData.ForLevelSpawners(sceneName);
 
+
         InitSpawners(levelData);
         InitRewardPieces();
 
-        _hiddenItemsService.InitHiddenItems(sceneName);
+        _hiddenItemsService.InitHiddenItems(_levelName);
 
         GameObject character = InitCharacter(levelData);
         GameObject hud = _gameFactory.CreateHud();
         hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
-        hud.GetComponentInChildren<StarsUI>().Construct(_hiddenItemsService, _staticData.ForLevel(sceneName).HiddenAmount, _hiddenItemsService.TryGetFoundItemsAmount(sceneName, out int foundAmount)? foundAmount : 0);
+        hud.GetComponentInChildren<StarsUI>().Construct(_hiddenItemsService, _staticData.ForLevel(_levelName).HiddenAmount, _hiddenItemsService.TryGetFoundItemsAmount(sceneName, out int foundAmount)? foundAmount : 0);
         hud.GetComponentInChildren<ItemsPanelUI>().Construct(_hiddenItemsService);
         CamerFollow(character);
     }

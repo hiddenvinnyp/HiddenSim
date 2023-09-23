@@ -9,6 +9,7 @@ public class PauseWindow : WindowBase
     [SerializeField] private Toggle _toggle;
     [SerializeField] private TextMeshProUGUI _musicText;
     private bool _isMusicOn;
+    private ISaveLoadService _saveLoadService;
 
     public event Action GamePaused;
     public event Action GameUnpaused;
@@ -16,6 +17,7 @@ public class PauseWindow : WindowBase
     protected override void OnAwake()
     {
         base.OnAwake();
+        _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
         GamePaused?.Invoke();
         CloseButton.onClick.AddListener(Unpaused);
         _isMusicOn = _toggle.isOn;
@@ -40,6 +42,7 @@ public class PauseWindow : WindowBase
     public void LoadMainMenu()
     {
         // TODO: не сохраняются спавны врагов
+        _saveLoadService.SaveProgress();
         StateMachine.Enter<LoadMenuState>();
     }
 

@@ -9,5 +9,8 @@ public interface IHiddenItemsService : IService
 
     HiddenItem GetProperty(string id);
     void InitHiddenItems(string sceneName);
-    bool TryGetFoundItemsAmount(string sceneName, out int foundAmount);
+    bool IsItemFound(string id);
+    bool IsItemInList(string id);
+    void SignTo(Findable item);
+    bool TryGetFoundItemsAmount(string levelName, out int foundAmount);
 }

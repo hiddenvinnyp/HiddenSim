@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public bool IsFound = false;
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _hint;
@@ -17,7 +18,7 @@ public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPoi
 
     private void Start()
     {
-        _found.enabled = false;
+        _found.enabled = IsFound;
         _namePanel.SetActive(false);
         _hintPanel.SetActive(false);
     }    
@@ -51,6 +52,7 @@ public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPoi
 
     public void OnItemFound()
     {
+        IsFound = true;
         _found.enabled = true;
     }
 }

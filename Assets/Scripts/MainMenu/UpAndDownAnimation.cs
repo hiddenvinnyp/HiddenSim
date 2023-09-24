@@ -21,6 +21,11 @@ public class UpAndDownAnimation : MonoBehaviour
         transform.DOPause();
     }
 
+    private void OnDestroy()
+    {
+        DOTween.KillAll(transform);
+    }
+
     private void StartLoopAnimation()
     {
         transform.position = new Vector3(transform.position.x, Random.Range(-_maxY, -_maxY * 0.5f), transform.position.z);

@@ -23,6 +23,11 @@ public class Openable : MonoBehaviour, IPointerDownHandler
             _initialPosition = transform.position;
     }
 
+    private void OnDestroy()
+    {
+        DOTween.KillAll(transform);
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (_isOpen)

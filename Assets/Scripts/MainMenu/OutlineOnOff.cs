@@ -14,7 +14,7 @@ public class OutlineOnOff : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     //private void OnMouseEnter()
     //{
-    //    if(_outline != null)
+    //    if (_outline != null)
     //        _outline.enabled = true;
     //}
 

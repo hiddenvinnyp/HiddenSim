@@ -24,6 +24,7 @@ public class ItemsPanelUI : MonoBehaviour
             GameObject button = Instantiate(_buttonPrefab, transform);
             UIHiddenItemButton buttonUI = button.GetComponent<UIHiddenItemButton>();
             buttonUI.ApplyProperty(property);
+            buttonUI.IsFound = _hiddenItemsService.IsItemFound(id);
             _buttons.Add(id, buttonUI);
         }  
     }

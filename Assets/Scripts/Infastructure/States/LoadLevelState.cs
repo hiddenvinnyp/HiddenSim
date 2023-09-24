@@ -71,7 +71,7 @@ public class LoadLevelState : IPayloadedState<string>
         GameObject character = InitCharacter(levelData);
         GameObject hud = _gameFactory.CreateHud();
         hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
-        hud.GetComponentInChildren<StarsUI>().Construct(_hiddenItemsService, _staticData.ForLevel(_levelName).HiddenAmount, _hiddenItemsService.TryGetFoundItemsAmount(sceneName, out int foundAmount)? foundAmount : 0);
+        hud.GetComponentInChildren<StarsUI>().Construct(_hiddenItemsService, _staticData.ForLevel(_levelName).HiddenAmount, _hiddenItemsService.TryGetFoundItemsAmount(_levelName, out int foundAmount)? foundAmount : 0);
         hud.GetComponentInChildren<ItemsPanelUI>().Construct(_hiddenItemsService);
         CamerFollow(character);
     }

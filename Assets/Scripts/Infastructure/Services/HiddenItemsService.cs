@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HiddenItemsService : IHiddenItemsService
+public class HiddenItemsService : IHiddenItemsService, ISavedProgress
 {
     public event Action<string> FoundItem;
 
@@ -12,10 +12,10 @@ public class HiddenItemsService : IHiddenItemsService
     private readonly ISaveLoadService _saveLoadService;
     private string _levelName;
     private string _sceneName;
-    private List<string> _selectedItemsIds = new List<string>();
-    private List<HiddenItemData> hiddenItems = new List<HiddenItemData>();
+    private List<HiddenItemData> _allHiddenItems = new List<HiddenItemData>();
+    private Dictionary<string, bool> _selectedItemsIds = new Dictionary<string, bool>();
 
-    public List<string> SelectedItemsIds => _selectedItemsIds;
+    public List<string> SelectedItemsIds => _selectedItemsIds.Keys.ToList();
 
 
     public HiddenItemsService(IProgressService progressService, IStaticDataService staticDataService, ISaveLoadService saveLoadService)
@@ -29,25 +29,32 @@ public class HiddenItemsService : IHiddenItemsService
     {
         _levelName = levelName;
         _sceneName = _staticData.ForLevel(levelName).SceneName;
-        hiddenItems = _staticData.ForLevelSpawners(_sceneName).HiddenItems; // все предметы, доступные для поиска
-        
+        _allHiddenItems = _staticData.ForLevelSpawners(_sceneName).HiddenItems; // all findable items on level
+
         if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(levelName, out LevelData levelData) && levelData.HiddenObjectDataDictionary != null) // сохраненные, если есть
         {
-            _selectedItemsIds = levelData.HiddenObjectDataDictionary.Dictionary.Select(x=> x.Key).ToList();
+            foreach (var item in levelData.HiddenObjectDataDictionary.Dictionary)
+            {
+                _selectedItemsIds.Add(item.Key, item.Value);
+            }
+            if (_selectedItemsIds.Count == 0)
+            {
+                Debug.Log("tyt1");
+                AddNewItemsForSearch();
+            }
         }
         else
         {
-            _selectedItemsIds = SelectItemsForSearch(hiddenItems, _staticData.ForLevel(levelName).HiddenAmount);
-            SaveItems(_selectedItemsIds);
-        }            
+            Debug.Log("tyt2");
+            AddNewItemsForSearch();
+        }
     }
 
     public bool IsItemInList(string id)
     {
-        if (_selectedItemsIds.Contains(id))
+        if (SelectedItemsIds.Contains(id))
         {
-            FoundItem?.Invoke(id);
-            Save(id);
+            //FoundItem?.Invoke(id);
             return true;
         }
         return false;
@@ -57,7 +64,8 @@ public class HiddenItemsService : IHiddenItemsService
     {
         if (!IsItemInList(id)) return false;
 
-        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(_levelName, out LevelData levelData))
+        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(_levelName, out LevelData levelData)
+            && levelData.HiddenObjectDataDictionary != null)
         {
             levelData.HiddenObjectDataDictionary.Dictionary.TryGetValue(id, out bool found);
             return found;
@@ -67,12 +75,6 @@ public class HiddenItemsService : IHiddenItemsService
 
     public HiddenItem GetProperty(string id) //find in static data
     {
-        Debug.Log("---------------");
-        Debug.Log(_sceneName);
-        Debug.Log(id);
-        Debug.Log(_staticData.ForLevelSpawners(_sceneName));
-        Debug.Log(_staticData.ForLevelSpawners(_sceneName).HiddenItems.Count);
-        Debug.Log("---------------");
         foreach (var item in _staticData.ForLevelSpawners(_sceneName).HiddenItems)
         {
             if (item.Id == id)
@@ -81,11 +83,11 @@ public class HiddenItemsService : IHiddenItemsService
         return null;
     }
 
-    public bool TryGetFoundItemsAmount(string sceneName, out int foundAmount)
+    public bool TryGetFoundItemsAmount(string levelName, out int foundAmount)
     {
         foundAmount = 0;
 
-        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(sceneName, out LevelData levelProgress))
+        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(levelName, out LevelData levelProgress) && levelProgress.HiddenObjectDataDictionary != null)
         {
             foundAmount = levelProgress.HiddenObjectDataDictionary.Dictionary.Select(x => x.Value == true).ToList().Count;
             return true;
@@ -93,14 +95,54 @@ public class HiddenItemsService : IHiddenItemsService
         return false;
     }
 
-    private void SaveItems(List<string> selectedItemsIds)
+    public void UpdateProgress(PlayerProgress progress)
     {
-        _saveLoadService.SaveProgress();
+        progress.LevelProgressData.Dictionary.TryGetValue(_levelName, out LevelData levelProgress);
+        levelProgress.HiddenObjectDataDictionary?.Dictionary.Clear();
+        foreach (var item in _selectedItemsIds)
+        {
+            levelProgress.HiddenObjectDataDictionary.Dictionary.Add(item.Key, item.Value);
+        }        
     }
 
-    private void Save(string id)
+    public void LoadProgress(PlayerProgress progress)
     {
-        Debug.Log("Need to save that " + id + " is found.");
+        progress.LevelProgressData.Dictionary.TryGetValue(_levelName, out LevelData levelProgress);
+        if (levelProgress.HiddenObjectDataDictionary != null)
+        {
+            foreach (var item in levelProgress.HiddenObjectDataDictionary.Dictionary)
+            {
+                _selectedItemsIds.Clear();
+                _selectedItemsIds.Add(item.Key, item.Value);
+            }
+        } else 
+        { 
+            _selectedItemsIds.Clear();
+            Debug.Log("tyt3");
+            AddNewItemsForSearch();
+        }
+        FoundItem?.Invoke("");
+    }
+
+    public void SignTo(Findable item)
+    {
+        item.ItemSelected += TryFindItem;
+    }
+
+    private void TryFindItem(string id)
+    {
+        if (IsItemInList(id))
+        {
+            FoundItem?.Invoke(id);
+        }
+    }
+
+    private void AddNewItemsForSearch()
+    {
+        foreach (string item in SelectItemsForSearch(_allHiddenItems, _staticData.ForLevel(_levelName).HiddenAmount))
+        {
+            _selectedItemsIds.Add(item, false);
+        }
     }
 
     private List<string> SelectItemsForSearch(List<HiddenItemData> hiddenItems, int amount)
@@ -111,11 +153,19 @@ public class HiddenItemsService : IHiddenItemsService
             if (hiddenItems.Count < amount)
             {
                 items.Add(hiddenItems[i].Id);
-            } else
+            }
+            else
+            {
                 //TODO rework: elements should not repeat
-                items.Add(hiddenItems[UnityEngine.Random.Range(0, hiddenItems.Count-1)].Id);
+                int randomIndex = UnityEngine.Random.Range(0, hiddenItems.Count - 1);
+                if (items.Contains(hiddenItems[randomIndex].Id))
+                {
+                    i--;
+                    continue;
+                } else
+                    items.Add(hiddenItems[randomIndex].Id);
+            }
         }
-
         return items;
     }
 }

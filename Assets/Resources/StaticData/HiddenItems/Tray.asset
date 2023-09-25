@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Tray
   Hint: with teapot
-  Icon: {fileID: 21300134, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  Icon: {fileID: 21300000, guid: 263d8ff0f9777bd49ae310c907adbec6, type: 3}

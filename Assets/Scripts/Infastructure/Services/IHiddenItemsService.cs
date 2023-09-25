@@ -12,5 +12,5 @@ public interface IHiddenItemsService : IService
     bool IsItemFound(string id);
     bool IsItemInList(string id);
     void SignTo(Findable item);
-    bool TryGetFoundItemsAmount(string levelName, out int foundAmount);
+    bool TryGetFoundItemsAmount(out int foundAmount);
 }

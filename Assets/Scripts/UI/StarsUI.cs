@@ -8,12 +8,12 @@ public class StarsUI : MonoBehaviour
     private int _hiddenAmount = 0;
     private int _foundObjectsAmount;
 
-    public void Construct(IHiddenItemsService hiddenItemsService, int hiddenAmount, int found = 0)
+    public void Construct(IHiddenItemsService hiddenItemsService)
     {
         _hiddenItemsService = hiddenItemsService;
-        _hiddenAmount = hiddenAmount;
-        _foundObjectsAmount = found;
-
+        _hiddenAmount = _hiddenItemsService.SelectedItemsIds.Count;
+        _foundObjectsAmount = _hiddenItemsService.TryGetFoundItemsAmount(out int foundAmount) ? foundAmount : 0;
+        UpdateHPBar("");
         _hiddenItemsService.FoundItem += UpdateHPBar;
     }
 
@@ -24,6 +24,7 @@ public class StarsUI : MonoBehaviour
 
     private void UpdateHPBar(string id)
     {
+        _foundObjectsAmount = _hiddenItemsService.TryGetFoundItemsAmount(out int foundAmount) ? foundAmount : 0;
         _bar.SetValue(_foundObjectsAmount, _hiddenAmount);
     }
 

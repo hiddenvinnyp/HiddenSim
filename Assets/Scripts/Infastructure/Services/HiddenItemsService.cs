@@ -83,11 +83,11 @@ public class HiddenItemsService : IHiddenItemsService, ISavedProgress
         return null;
     }
 
-    public bool TryGetFoundItemsAmount(string levelName, out int foundAmount)
+    public bool TryGetFoundItemsAmount(out int foundAmount)
     {
         foundAmount = 0;
 
-        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(levelName, out LevelData levelProgress) && levelProgress.HiddenObjectDataDictionary != null)
+        if (_progressService.Progress.LevelProgressData.Dictionary.TryGetValue(_levelName, out LevelData levelProgress) && levelProgress.HiddenObjectDataDictionary != null)
         {
             foundAmount = levelProgress.HiddenObjectDataDictionary.Dictionary.Select(x => x.Value == true).ToList().Count;
             return true;
@@ -133,12 +133,14 @@ public class HiddenItemsService : IHiddenItemsService, ISavedProgress
     {
         if (IsItemInList(id))
         {
+            //TODO write to Progress
             FoundItem?.Invoke(id);
         }
     }
 
     private void AddNewItemsForSearch()
     {
+        _selectedItemsIds.Clear();
         foreach (string item in SelectItemsForSearch(_allHiddenItems, _staticData.ForLevel(_levelName).HiddenAmount))
         {
             _selectedItemsIds.Add(item, false);

@@ -13,16 +13,19 @@ public class NewGame : MonoBehaviour
         _firstLevelName = GetFirstLevelName();
     }
 
-    public void CleanUpProgress()
+    public void LoadFirstLevel()
+    {
+        CleanUpProgress();
+        _stateMachine.Enter<LoadLevelState, string>(_firstLevelName);
+    }
+
+    private void CleanUpProgress()
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-    }
 
-    public void LoadFirstLevel()
-    {
-        _stateMachine.Enter<LoadLevelState, string>(_firstLevelName);
-    }
+        _stateMachine.Enter<LoadProgressState>();
+    } 
 
     private string GetFirstLevelName() =>
         _staticData.ForGamePlan().Episodes[0].Levels[0].Name;

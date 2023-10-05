@@ -18,8 +18,9 @@ public class ItemsPanelUI : MonoBehaviour
 
     private void SpawnItemButtons()
     {
-        foreach (string id in _hiddenItemsService.SelectedItemsIds)
+        foreach (string id in _hiddenItemsService.SelectedItemsIds())
         {
+            Debug.Log("Spawn Button" + id);
             HiddenItem property = _hiddenItemsService.GetProperty(id);
             GameObject button = Instantiate(_buttonPrefab, transform);
             UIHiddenItemButton buttonUI = button.GetComponent<UIHiddenItemButton>();

@@ -11,10 +11,12 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private CharacterAnimator _animator;
     [SerializeField] private GameObject _deathFX;
     private bool _isDead;
+    private IWindowService _windowService;
 
     private void Start()
     {
         _health.HealthChanged += OnHealthChanged;
+        _windowService = AllServices.Container.Single<IWindowService>();
     }
 
     private void OnDestroy()
@@ -38,5 +40,7 @@ public class CharacterDeath : MonoBehaviour
         _animator.PlayDeath();
 
         Instantiate(_deathFX, transform.position, Quaternion.identity);
+
+        _windowService.Open(WindowId.Defeat);
     }
 }

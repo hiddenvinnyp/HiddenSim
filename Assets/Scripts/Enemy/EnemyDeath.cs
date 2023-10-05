@@ -33,7 +33,7 @@ public class EnemyDeath : MonoBehaviour
         _animator.PlayDeath();
         Instantiate(_deathFx, transform.position, Quaternion.identity);
         StartCoroutine(DestoyTimer());
-
+        TurnOffCollider();
         DeathHappend?.Invoke();
     }
 
@@ -41,5 +41,11 @@ public class EnemyDeath : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
+    }
+
+    private void TurnOffCollider()
+    {
+        BoxCollider collider = GetComponentInChildren<BoxCollider>();
+        collider.enabled = false;
     }
 }

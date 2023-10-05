@@ -2,12 +2,14 @@
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class RewardPiece : MonoBehaviour, ISavedProgress
 {
     [SerializeField] private GameObject _coin;
     [SerializeField] private GameObject _pickupFXPrefab;
     [SerializeField] private TextMeshPro _rewardText;
     [SerializeField] private GameObject _pickupPopup;
+    [SerializeField] private AudioSource _pickupSound;
 
     private Reward _reward;
     private bool _picked;
@@ -59,6 +61,7 @@ public class RewardPiece : MonoBehaviour, ISavedProgress
         HideReward();
         PlayPickupFX();
         ShowText();
+        _pickupSound.Play();
 
         StartCoroutine(StartDestroyTimer());
     }

@@ -14,18 +14,180 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: FirstFloor
   EnemySpawners:
+  - Id: FirstFloor_28069702-d837-4535-8c09-03e5a18c214c
+    EnemyTypeId: 1
+    Position: {x: 5.406007, y: 0.5101032, z: 4.804435}
   - Id: FirstFloor_d9d43401-8353-45eb-8cf4-d81141bc83fd
     EnemyTypeId: 2
     Position: {x: -4.779787, y: 0.5101013, z: -2.0358715}
   - Id: FirstFloor_78000f55-eb38-43ab-9ac4-8bdf228caf1c
     EnemyTypeId: 1
     Position: {x: -5.36, y: 0.5101032, z: 5.38}
-  - Id: FirstFloor_28069702-d837-4535-8c09-03e5a18c214c
-    EnemyTypeId: 1
-    Position: {x: 5.406007, y: 0.5101032, z: 4.804435}
   InitialHeroPosition: {x: 6, y: 0.58, z: -3}
   HiddenItems:
-  - Id: FirstFloor_49509bdf-b670-49d4-a78b-ba4c28875e99
-    Prefs: {fileID: 11400000, guid: db3c3ec2f6ef0fa4f9d88c8f515fbcc9, type: 2}
+  - Id: FirstFloor_173596eb-5967-43b1-befe-0d034899a213
+    Prefs: {fileID: 11400000, guid: b607d8374cb13f94ea0bd76877b2b496, type: 2}
+  - Id: FirstFloor_250b4b2a-73b0-4d51-8bac-7fa6166fcc6e
+    Prefs: {fileID: 11400000, guid: 627a98cab9cc6334f99c36fb7e8997fc, type: 2}
+  - Id: FirstFloor_940cd5cc-5334-40ca-8033-dc616b417d02
+    Prefs: {fileID: 11400000, guid: 7d69cc9ef10a86d49a66f25be9fe6a39, type: 2}
+  - Id: FirstFloor_65cafa93-d451-46f7-b255-a2c5d5363c18
+    Prefs: {fileID: 11400000, guid: 75710e02dcc8a6e40a44fd934363dc54, type: 2}
   - Id: FirstFloor_bc238fad-4466-4027-b530-aa04a9fbf0e9
     Prefs: {fileID: 11400000, guid: 64adfce21ec70584faa204f000da91b1, type: 2}
+  - Id: FirstFloor_215f8dc2-0bf2-4c8d-b715-817abd6a8d0c
+    Prefs: {fileID: 11400000, guid: 48530446a9ee0db46950eea7da045391, type: 2}
+  - Id: FirstFloor_49509bdf-b670-49d4-a78b-ba4c28875e99
+    Prefs: {fileID: 11400000, guid: db3c3ec2f6ef0fa4f9d88c8f515fbcc9, type: 2}
+  - Id: FirstFloor_90a693c9-5c91-447f-af99-3a7f010aaf76
+    Prefs: {fileID: 11400000, guid: 77bbadd958e0b1d4c96030f0c468dfcb, type: 2}
+  - Id: FirstFloor_798427f2-0d6f-4d67-b959-eb9a28dc9bf0
+    Prefs: {fileID: 11400000, guid: a99d922abc13b9e4bacf58b0389430dd, type: 2}
+  - Id: FirstFloor_7fe4641e-758d-445c-8b88-5592ca5c2b51
+    Prefs: {fileID: 11400000, guid: 22cbef6c574ed0c4bafb0695bf1adc3b, type: 2}
+  - Id: FirstFloor_62ca0b48-2fdd-4eed-9822-21af409d2f97
+    Prefs: {fileID: 11400000, guid: 718568b20874eb8418c0a747e3268925, type: 2}
+  - Id: FirstFloor_2038cbbe-1a3f-4946-822e-7d2c009d1973
+    Prefs: {fileID: 11400000, guid: 6fb8b95d529be1b46beb9573340fc362, type: 2}
+  - Id: FirstFloor_929e3cde-3197-4c88-9df7-ba9c37e8be87
+    Prefs: {fileID: 11400000, guid: 3c7578c90f3b1a140b49e6b1539c5627, type: 2}
+  - Id: FirstFloor_39e0cd52-f194-41da-94f4-52a5b720c853
+    Prefs: {fileID: 11400000, guid: 000d692a060410343918fde895a69a98, type: 2}
+  - Id: FirstFloor_7681ab15-1c45-4cde-8009-fdb502596b1f
+    Prefs: {fileID: 11400000, guid: 0b5b01fc3bfe15745b8df605b5e641c5, type: 2}
+  - Id: FirstFloor_d0dfb242-adf4-4494-a966-6c6c8c9dd5bb
+    Prefs: {fileID: 11400000, guid: ae518e5d8e9381e4eb2727ed9da987a8, type: 2}
+  - Id: FirstFloor_eb0fabde-2175-4433-a0dc-4584e5d88c31
+    Prefs: {fileID: 11400000, guid: 259f74f0a532d474aa2ae0a74d617fcc, type: 2}
+  - Id: FirstFloor_eac3dc12-d898-4717-8ef0-289b8a71ccdb
+    Prefs: {fileID: 11400000, guid: 02fe45bb59414ac4f9fc37af4fdbe640, type: 2}
+  - Id: FirstFloor_b2f76b05-c8c9-4f47-bcc2-3488bdfaac80
+    Prefs: {fileID: 11400000, guid: 0889c8db1ae99a74aac16a5070862977, type: 2}
+  - Id: FirstFloor_f75bd185-72b7-44b0-a503-d50bb1789a77
+    Prefs: {fileID: 11400000, guid: 576b6b00bf915764e8c788975bf96c5d, type: 2}
+  - Id: FirstFloor_325f0fcd-25c1-4540-836d-775ff466f18f
+    Prefs: {fileID: 11400000, guid: fce7e7f3fa5842141a021e657569148d, type: 2}
+  - Id: FirstFloor_7a9eaf71-d7fd-478e-a255-4d6a90a53443
+    Prefs: {fileID: 11400000, guid: 42b7635e2ce3a054ebd7a660628d4ed7, type: 2}
+  - Id: FirstFloor_15803346-abbc-4a9d-a047-799350e6722e
+    Prefs: {fileID: 11400000, guid: 43744b8929fa1e949866816924981509, type: 2}
+  - Id: FirstFloor_864989b6-8b48-4fe2-9a52-5ef6aea549f5
+    Prefs: {fileID: 11400000, guid: 548b34fe785790448ad5c409052f238b, type: 2}
+  - Id: FirstFloor_76f89e69-95df-4da4-a0ad-83cf0a615d0f
+    Prefs: {fileID: 11400000, guid: 93d0feef374f8934396606c2eb2b351e, type: 2}
+  - Id: FirstFloor_52233347-12ec-4247-b255-af4432a58477
+    Prefs: {fileID: 11400000, guid: 0adff27a28f579d4c9bc341079286c09, type: 2}
+  - Id: FirstFloor_cc81ce44-fb18-4c69-9fc6-1bf7815dfcbd
+    Prefs: {fileID: 11400000, guid: cfdf48422dd913042bac671830964cef, type: 2}
+  - Id: FirstFloor_667eb632-0368-4694-bfb8-7e87ac67c5c7
+    Prefs: {fileID: 11400000, guid: f5e7db939891c59488e821cd292e9435, type: 2}
+  - Id: FirstFloor_ac883014-abdb-453a-947d-98e4d35490af
+    Prefs: {fileID: 11400000, guid: a4847b4050b7b80408c4dd362025b70c, type: 2}
+  - Id: FirstFloor_b4e4a62d-66ca-403f-8532-8ab75bfe5a26
+    Prefs: {fileID: 11400000, guid: 0f37a291d2ae64542a3a65b13ba5c89b, type: 2}
+  - Id: FirstFloor_8dcf3c17-39ed-4d3c-96cd-3af80d750c61
+    Prefs: {fileID: 11400000, guid: 7fed2bf6c59952f48a5fe496bc0f9663, type: 2}
+  - Id: FirstFloor_4cdee644-1829-449e-b503-57dcd6ecaa2b
+    Prefs: {fileID: 11400000, guid: 00ac06a6c2e44cd4abf39a2d2e6496ab, type: 2}
+  - Id: FirstFloor_bb5bdf91-9c6a-472e-8f58-40329210eafe
+    Prefs: {fileID: 11400000, guid: 5f950394dda2c834da1d2a99e2180abb, type: 2}
+  - Id: FirstFloor_7739b4b0-70a8-44cd-a6ae-7aff0c5fc8e8
+    Prefs: {fileID: 11400000, guid: 251491a7b7812a545bcd51e6d612ef6a, type: 2}
+  - Id: FirstFloor_9a05c6c9-3bdb-44e8-8574-0a5715a11926
+    Prefs: {fileID: 11400000, guid: 12b115dfc8779ad4e8ee0d0091862b7f, type: 2}
+  - Id: FirstFloor_3fc81d8b-639a-4350-90f5-bd05bb5da451
+    Prefs: {fileID: 11400000, guid: bdb79afc8a0b3de499dd2cf3c960a9f9, type: 2}
+  - Id: FirstFloor_5d80f353-9caa-45c8-b64b-f04428c01682
+    Prefs: {fileID: 11400000, guid: 65e870e51dca2e442b96dbc15db63e9a, type: 2}
+  - Id: FirstFloor_91cdff75-1b10-4f20-b570-1feb94ee490e
+    Prefs: {fileID: 11400000, guid: 8a5e58f63620efb448d81467cebf1c9f, type: 2}
+  - Id: FirstFloor_c2bbe00c-6f1b-4b6a-ad10-d7fa10f327f7
+    Prefs: {fileID: 11400000, guid: dba4adda35f4aab429e9952ebabe8c2c, type: 2}
+  - Id: FirstFloor_d2c0f5ee-50c1-4810-a790-82f4a9270294
+    Prefs: {fileID: 11400000, guid: 5a2714dfc2c93174aa2982e577b94543, type: 2}
+  - Id: FirstFloor_d9934591-362f-4be8-aafd-442ee1ddf98e
+    Prefs: {fileID: 11400000, guid: 718f3ade32103fd488b85607caf3abff, type: 2}
+  - Id: FirstFloor_c43654e7-57c0-42d4-ab8d-acb3b543f000
+    Prefs: {fileID: 11400000, guid: 5f3c4339121f58a428a9c716958142b5, type: 2}
+  - Id: FirstFloor_dd5a236d-f145-4c8b-bdbc-ccb50b720209
+    Prefs: {fileID: 11400000, guid: bf617d491672e4049b5bfb9b1a2d70ca, type: 2}
+  - Id: FirstFloor_d9662250-6a23-47fd-bdb7-5495bdaa2b86
+    Prefs: {fileID: 0}
+  - Id: FirstFloor_dcfe4a75-b778-4ee0-a2b8-5fa0a6c3145d
+    Prefs: {fileID: 11400000, guid: 667fffd79c693c64ba5f7da6eb84ce18, type: 2}
+  - Id: FirstFloor_0e590963-11e0-449e-8ab3-30eefe45109a
+    Prefs: {fileID: 11400000, guid: 0b96b47fda2a986459874ac85ff0f266, type: 2}
+  - Id: FirstFloor_13659d67-4bff-40fe-8d72-339bf85914e4
+    Prefs: {fileID: 11400000, guid: 14d8f210fb26ffe4984e9b452c5ccd54, type: 2}
+  - Id: FirstFloor_915abb3e-ee5b-4a51-a5fc-4a1465c3d9b2
+    Prefs: {fileID: 11400000, guid: ac4007f752bb2a740bf4732d20fc7321, type: 2}
+  - Id: FirstFloor_16a86159-8891-465e-b75b-6e06905f28cb
+    Prefs: {fileID: 11400000, guid: 0f8e2d1646e959247bc3a11e05809a60, type: 2}
+  - Id: FirstFloor_87513137-209e-44ab-b125-cbc54e9622c4
+    Prefs: {fileID: 11400000, guid: a95cca2218396b440a79473579d66fb4, type: 2}
+  - Id: FirstFloor_505d8fba-2eb5-4f55-8bf3-d10b1a5216ff
+    Prefs: {fileID: 11400000, guid: 6fd5e4831179c2945ac97e9cf2577970, type: 2}
+  - Id: FirstFloor_0f46799e-d5eb-4b14-85ff-2ffd7daf75eb
+    Prefs: {fileID: 11400000, guid: d10776bdbae6a1b449ef6e55f746c53f, type: 2}
+  - Id: FirstFloor_e8cbe6fb-41b0-474e-be59-d53a189e4e5b
+    Prefs: {fileID: 11400000, guid: 502f01b18bb1115468e4c87cd1a7c197, type: 2}
+  - Id: FirstFloor_3502b0d5-17ee-470c-a7d0-6625c864ca24
+    Prefs: {fileID: 11400000, guid: 355742169e0a8fa4c97d954da48a3243, type: 2}
+  - Id: FirstFloor_b752a0ea-bc23-4a6e-8e81-e4814b76f982
+    Prefs: {fileID: 11400000, guid: d7def1a493f880f4f84fbdc2f9a0449f, type: 2}
+  - Id: FirstFloor_71b9a4f1-da04-4060-9212-98229e2e618f
+    Prefs: {fileID: 11400000, guid: b085eb01bef5e4543926bbb6b6e58068, type: 2}
+  - Id: FirstFloor_8e2ae28d-0654-4521-aa23-42cf6923f608
+    Prefs: {fileID: 11400000, guid: 75c27b562129c7f4bbc129e00c20bebe, type: 2}
+  - Id: FirstFloor_c32b9070-ee77-45b2-96e6-d3f172818878
+    Prefs: {fileID: 11400000, guid: 99339536dde55964cbc768a5e2b3e503, type: 2}
+  - Id: FirstFloor_3858419e-f2f6-4a04-be21-7580d720ff33
+    Prefs: {fileID: 11400000, guid: 304a121f1c2420e4ead5f682b9031de5, type: 2}
+  - Id: FirstFloor_49521f2f-63fe-46c0-a76a-3e1d99481d58
+    Prefs: {fileID: 11400000, guid: f66b3ba3d4187f54fbc420ca68b2a74a, type: 2}
+  - Id: FirstFloor_b86bf89c-8693-4069-8993-3fe94ae1bc50
+    Prefs: {fileID: 11400000, guid: 8f7cd9c9d35fc5841a49e8d7c9ef8b97, type: 2}
+  - Id: FirstFloor_f9fb28ea-cc41-47f0-af72-e1b584c679da
+    Prefs: {fileID: 11400000, guid: 5cae8f4b3d2640d419ad073d476b8fc9, type: 2}
+  - Id: FirstFloor_2492c6c3-15eb-4f0d-a870-0613b31abe6f
+    Prefs: {fileID: 0}
+  - Id: FirstFloor_2fa483b6-3456-485d-91f6-84c00322affd
+    Prefs: {fileID: 11400000, guid: dd1a894e2f5402f44acb131efd33e9eb, type: 2}
+  - Id: FirstFloor_2345d13e-fe5a-41c8-9754-436c8c3fd6ac
+    Prefs: {fileID: 11400000, guid: aa0746ffd0535b14cab56b4573379081, type: 2}
+  - Id: FirstFloor_1f522fb7-e386-4bc3-a148-9ba50469cfa4
+    Prefs: {fileID: 11400000, guid: 0df34f2d5e0bd36478cedc7479678a38, type: 2}
+  - Id: FirstFloor_e568d370-34c4-4644-9c59-a695c5b6c935
+    Prefs: {fileID: 11400000, guid: 284aed542d0c0c14c82c1aa850d9a63d, type: 2}
+  - Id: FirstFloor_c8357845-3a0f-4de7-ac7c-cfba8c744f73
+    Prefs: {fileID: 11400000, guid: b667240ba815bc34ba1d809cbf84ca8a, type: 2}
+  - Id: FirstFloor_cd909db5-be6b-4389-8705-ba2d42203e8b
+    Prefs: {fileID: 11400000, guid: 35bb8c3325b4c0143a7f34f118e7fcf3, type: 2}
+  - Id: FirstFloor_5214cc06-18a7-4835-b0a5-368ee11c91f8
+    Prefs: {fileID: 11400000, guid: bdddc43590b41f34ea88f31e1cc585e1, type: 2}
+  - Id: FirstFloor_41b219b0-f187-4201-8e15-387a8931130f
+    Prefs: {fileID: 11400000, guid: 6d8b9a93b464e3049ad163c4dd86e2b7, type: 2}
+  - Id: FirstFloor_be2eeea4-1548-4fc8-bb12-950f5fa6c9de
+    Prefs: {fileID: 11400000, guid: 2b57d254cffcb3244ac4778474627101, type: 2}
+  - Id: FirstFloor_5f437f8e-84e2-4aee-b0b9-6bfa74a46b05
+    Prefs: {fileID: 11400000, guid: ef1251ea49f831141adf3b8f9e28023d, type: 2}
+  - Id: FirstFloor_90e6a2c1-f2dc-4a3d-a3d2-7c74a2116f22
+    Prefs: {fileID: 11400000, guid: 1d2db4ae1b50c0749b6b013480a7aa33, type: 2}
+  - Id: FirstFloor_4b122131-7917-4d34-a235-652ba94674c0
+    Prefs: {fileID: 11400000, guid: 4b16c2a37a202304b9cbca5577002594, type: 2}
+  - Id: FirstFloor_dc55a1ce-fa90-4908-93db-5b3052183e46
+    Prefs: {fileID: 11400000, guid: d7a6902564f12ce4db8c4abb02a918b0, type: 2}
+  - Id: FirstFloor_97e6d8fb-2989-4739-9eba-19719c19fe08
+    Prefs: {fileID: 11400000, guid: 9e1e804e458c2f74b8d2c264a3a1846c, type: 2}
+  - Id: FirstFloor_d597d90a-7441-4969-a606-082b61072d2f
+    Prefs: {fileID: 11400000, guid: cbe351d4f69a06f46862d6b368729a24, type: 2}
+  - Id: FirstFloor_e38d2e78-f042-4528-b562-ffd5fe6dd2bd
+    Prefs: {fileID: 11400000, guid: 2a570d6f08782de47b3567182a04af4b, type: 2}
+  - Id: FirstFloor_ad1746b4-0c52-44e1-9ce6-ee0ccf9cdbf3
+    Prefs: {fileID: 11400000, guid: c031e5d27fec9ec4c9f615ac94b310cc, type: 2}
+  - Id: FirstFloor_ac4b4382-4d46-4c92-8df7-c22482aafadd
+    Prefs: {fileID: 11400000, guid: f67a1e6b495ebd4419b1a4b559bf24d4, type: 2}
+  - Id: FirstFloor_b7281333-e6e4-41ba-9706-ede6a6686aea
+    Prefs: {fileID: 11400000, guid: 4461beb627b12574084de1fc359ecf27, type: 2}
+  - Id: FirstFloor_aa60cda8-6133-41fe-aeaa-904224b0f26b
+    Prefs: {fileID: 11400000, guid: c617663d63c35724ea1f8674710e147a, type: 2}

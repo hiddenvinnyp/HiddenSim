@@ -14,14 +14,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: SecondFloor
   EnemySpawners:
-  - Id: FirstFloor_28069702-d837-4535-8c09-03e5a18c214c
+  - Id: SecondFloor_c10f41f9-c3eb-4a31-9d0e-f762c48206d6
     EnemyTypeId: 1
-    Position: {x: 5.406007, y: 0.5101032, z: 4.804435}
-  - Id: FirstFloor_d9d43401-8353-45eb-8cf4-d81141bc83fd
+    Position: {x: 5.98, y: 9.61, z: 6.63}
+  - Id: SecondFloor_6c9b58ea-21c1-4876-9075-603369cf982d
     EnemyTypeId: 2
-    Position: {x: -4.779787, y: 0.5101013, z: -2.0358715}
-  - Id: FirstFloor_78000f55-eb38-43ab-9ac4-8bdf228caf1c
+    Position: {x: 8.04, y: 9.609998, z: 3.71}
+  - Id: SecondFloor_966f736b-fd3e-45a1-9491-7cdbb6df1125
     EnemyTypeId: 1
-    Position: {x: -5.36, y: 0.5101032, z: 5.38}
-  InitialHeroPosition: {x: 6, y: 0.58, z: -3}
-  HiddenItems: []
+    Position: {x: 4.19, y: 9.61, z: -4.05}
+  InitialHeroPosition: {x: -4.56, y: 9.5, z: 4.63}
+  HiddenItems:
+  - Id: SecondFloor_44698a34-6a9e-4823-8ebb-3b3f4f71356c
+    Prefs: {fileID: 11400000, guid: 0adff27a28f579d4c9bc341079286c09, type: 2}
+  - Id: SecondFloor_58a71e81-9ee4-40b7-90de-76d3f8d07dc9
+    Prefs: {fileID: 11400000, guid: 43744b8929fa1e949866816924981509, type: 2}
+  - Id: SecondFloor_6fb3efcd-7cc2-4af8-bfb5-a09a16a8cc76
+    Prefs: {fileID: 11400000, guid: ba04e12a31dce7147bcc8cb6fc831d71, type: 2}
+  - Id: SecondFloor_6532a87b-bf19-4031-999f-53bb48224a9a
+    Prefs: {fileID: 11400000, guid: 627a98cab9cc6334f99c36fb7e8997fc, type: 2}
+  - Id: SecondFloor_04e91406-518b-4a9b-90ca-03304f1307e5
+    Prefs: {fileID: 11400000, guid: c031e5d27fec9ec4c9f615ac94b310cc, type: 2}
+  - Id: SecondFloor_e004688f-e7fc-42d6-a7dd-4854962b3e3d
+    Prefs: {fileID: 11400000, guid: 0f37a291d2ae64542a3a65b13ba5c89b, type: 2}
+  - Id: SecondFloor_da4317d5-5960-463d-9031-f7933dcb75e7
+    Prefs: {fileID: 11400000, guid: b607d8374cb13f94ea0bd76877b2b496, type: 2}
+  - Id: SecondFloor_05934211-ec53-4d0b-85e8-ea6085ac7d96
+    Prefs: {fileID: 11400000, guid: 0889c8db1ae99a74aac16a5070862977, type: 2}
+  - Id: SecondFloor_cd233992-0a75-49a1-ad43-cced9f87d9f4
+    Prefs: {fileID: 11400000, guid: 502f01b18bb1115468e4c87cd1a7c197, type: 2}
+  - Id: SecondFloor_6f9b7c6a-0b53-452f-be2a-ba4125bd4dd8
+    Prefs: {fileID: 11400000, guid: 5f3c4339121f58a428a9c716958142b5, type: 2}
+  - Id: SecondFloor_6ca6e215-3cd4-455b-8f04-7f0a3522df05
+    Prefs: {fileID: 11400000, guid: aa0746ffd0535b14cab56b4573379081, type: 2}
+  - Id: SecondFloor_6bbdc4b8-b5e5-408f-843f-5c06cc07a06b
+    Prefs: {fileID: 11400000, guid: dba4adda35f4aab429e9952ebabe8c2c, type: 2}
+  - Id: SecondFloor_7e517558-3c6d-4bb8-a662-6799d0aa1b77
+    Prefs: {fileID: 11400000, guid: 0b96b47fda2a986459874ac85ff0f266, type: 2}
+  - Id: SecondFloor_c20199e2-63e9-4f0e-bea4-5fb864c5eb0f
+    Prefs: {fileID: 11400000, guid: fce7e7f3fa5842141a021e657569148d, type: 2}
+  - Id: SecondFloor_7da9d049-bb9c-4414-b78f-b6ac58352638
+    Prefs: {fileID: 11400000, guid: 93d0feef374f8934396606c2eb2b351e, type: 2}
+  - Id: SecondFloor_ee3d6ed7-fd9b-4383-abdd-38230108e6dd
+    Prefs: {fileID: 11400000, guid: 667fffd79c693c64ba5f7da6eb84ce18, type: 2}
+  - Id: SecondFloor_c6a6d75b-68b1-46ac-9e16-572f504f99fb
+    Prefs: {fileID: 11400000, guid: d10776bdbae6a1b449ef6e55f746c53f, type: 2}
+  - Id: SecondFloor_d81bb143-9db7-4d24-b578-4d81b9a056af
+    Prefs: {fileID: 11400000, guid: 3c7578c90f3b1a140b49e6b1539c5627, type: 2}
+  - Id: SecondFloor_d7c7047d-2c5e-4c2b-85d3-d7c8b1477a60
+    Prefs: {fileID: 11400000, guid: 8f7cd9c9d35fc5841a49e8d7c9ef8b97, type: 2}
+  - Id: SecondFloor_0284b573-a361-4dc9-9d47-7241f7fca808
+    Prefs: {fileID: 11400000, guid: 259f74f0a532d474aa2ae0a74d617fcc, type: 2}
+  - Id: SecondFloor_be80ed0b-d623-451c-a677-1a0f43740bdf
+    Prefs: {fileID: 11400000, guid: 2b57d254cffcb3244ac4778474627101, type: 2}
+  - Id: SecondFloor_8ce9c007-c11f-4960-ade7-26a21da4d48d
+    Prefs: {fileID: 11400000, guid: bf617d491672e4049b5bfb9b1a2d70ca, type: 2}
+  - Id: SecondFloor_138e68c2-753c-420f-9b7f-3ed338e0e4ac
+    Prefs: {fileID: 11400000, guid: 355742169e0a8fa4c97d954da48a3243, type: 2}
+  - Id: SecondFloor_cff8a9e9-4861-4a44-a1bb-d52d864a43ad
+    Prefs: {fileID: 11400000, guid: d7a6902564f12ce4db8c4abb02a918b0, type: 2}
+  - Id: SecondFloor_6479c86b-c1f6-48d9-8566-0a216847a0b6
+    Prefs: {fileID: 11400000, guid: a99d922abc13b9e4bacf58b0389430dd, type: 2}
+  - Id: SecondFloor_b515838c-8170-46d2-8eb7-6e5a670420a0
+    Prefs: {fileID: 11400000, guid: 8a5e58f63620efb448d81467cebf1c9f, type: 2}
+  - Id: SecondFloor_6f6bde16-436b-4c74-9f65-abfc74d1978b
+    Prefs: {fileID: 11400000, guid: 00ac06a6c2e44cd4abf39a2d2e6496ab, type: 2}
+  - Id: SecondFloor_664c788c-d8be-4327-a084-4a7d10513fef
+    Prefs: {fileID: 11400000, guid: d7def1a493f880f4f84fbdc2f9a0449f, type: 2}
+  - Id: SecondFloor_2811401b-363e-449e-8817-afa5f2cbaa1f
+    Prefs: {fileID: 11400000, guid: 5cae8f4b3d2640d419ad073d476b8fc9, type: 2}
+  - Id: SecondFloor_007f3762-202a-4146-b6c4-bf4955c2df84
+    Prefs: {fileID: 11400000, guid: 1d2db4ae1b50c0749b6b013480a7aa33, type: 2}
+  - Id: SecondFloor_4711a5af-7f14-479d-988d-b04c324dbf19
+    Prefs: {fileID: 11400000, guid: a95cca2218396b440a79473579d66fb4, type: 2}
+  - Id: SecondFloor_29318859-5874-4b3a-bc1e-5cbf05eb4601
+    Prefs: {fileID: 11400000, guid: 6fb8b95d529be1b46beb9573340fc362, type: 2}
+  - Id: SecondFloor_45787772-7fe5-4b55-8ee8-7df9d12f1f66
+    Prefs: {fileID: 11400000, guid: 4b16c2a37a202304b9cbca5577002594, type: 2}
+  - Id: SecondFloor_3f91b39c-4d35-4428-8422-c9bd9829ebe8
+    Prefs: {fileID: 11400000, guid: ae518e5d8e9381e4eb2727ed9da987a8, type: 2}
+  - Id: SecondFloor_4563bbaa-ad3d-4c90-8f6d-39b351640050
+    Prefs: {fileID: 11400000, guid: 7d69cc9ef10a86d49a66f25be9fe6a39, type: 2}
+  - Id: SecondFloor_72dd7c3a-3ac8-4551-b0f6-f3d42d1652bb
+    Prefs: {fileID: 11400000, guid: 77bbadd958e0b1d4c96030f0c468dfcb, type: 2}
+  - Id: SecondFloor_831609dc-eccd-4da1-96ad-ec97e31e87e1
+    Prefs: {fileID: 11400000, guid: f67a1e6b495ebd4419b1a4b559bf24d4, type: 2}
+  - Id: SecondFloor_56c536f4-f554-433c-a6b8-46270ba71cea
+    Prefs: {fileID: 11400000, guid: bdb79afc8a0b3de499dd2cf3c960a9f9, type: 2}
+  - Id: SecondFloor_596fdabb-4203-49d1-9bc2-fb989323645d
+    Prefs: {fileID: 11400000, guid: 99339536dde55964cbc768a5e2b3e503, type: 2}
+  - Id: SecondFloor_a590fc13-2d4d-43ef-8fce-ebfdda12872f
+    Prefs: {fileID: 11400000, guid: 04b3be762951bdc4a92334f8d1844346, type: 2}
+  - Id: SecondFloor_7f8ff1bb-d1c8-42d8-be01-eb8d05bee44a
+    Prefs: {fileID: 11400000, guid: 17dcf9d839f66f54e8bf567208069e14, type: 2}
+  - Id: SecondFloor_ab4f26ad-0e46-4d0e-955e-46ce8ec1818f
+    Prefs: {fileID: 11400000, guid: 89d470500371ecc428a25bd73298936e, type: 2}

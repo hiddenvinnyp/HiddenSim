@@ -24,13 +24,6 @@ public class GameFactory : IGameFactory
         _stateMachine = stateMachine;
     }
 
-    private void Register(ISavedProgressReader progressReader)
-    {
-        if (progressReader is ISavedProgress progressWriter)
-            ProgressWriters.Add(progressWriter);
-        ProgressReaders.Add(progressReader);
-    }
-
     public RewardPiece CreateReward()
     {
         var rewardPiece = InstantiateRegistered(AssetPath.RewardCoin).GetComponent<RewardPiece>();
@@ -107,6 +100,12 @@ public class GameFactory : IGameFactory
         episodeHex.Construct(_progressService.Progress.LevelProgressData, _stateMachine);
     }
 
+    public void RegisterItemService(IHiddenItemsService hiddenItemsService)
+    {
+        if (hiddenItemsService is ISavedProgress progress)
+            Register(progress);
+    }
+
     public void Cleanup()
     {
         ProgressReaders.Clear();
@@ -125,6 +124,13 @@ public class GameFactory : IGameFactory
         GameObject gameObject = _assets.Instantiate(prefabPath);
         RegisterProgressWatchers(gameObject);
         return gameObject;
+    }
+
+    private void Register(ISavedProgressReader progressReader)
+    {
+        if (progressReader is ISavedProgress progressWriter)
+            ProgressWriters.Add(progressWriter);
+        ProgressReaders.Add(progressReader);
     }
 
     private void RegisterProgressWatchers(GameObject gameObject)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadLevelState : IPayloadedState<string>
@@ -49,7 +50,7 @@ public class LoadLevelState : IPayloadedState<string>
     }
 
     private void InitUIRoot() => 
-        _uiFactory.CreateUIRoot();
+        _uiFactory.CreateUIRoot(_levelName);
 
     private void InformProgressReaders()
     {
@@ -62,13 +63,15 @@ public class LoadLevelState : IPayloadedState<string>
         string sceneName = SceneManager.GetActiveScene().name;
         LevelSpawnersStaticData levelData = _staticData.ForLevelSpawners(sceneName);
 
-
         InitSpawners(levelData);
         InitRewardPieces();
 
+        _gameFactory.RegisterItemService(_hiddenItemsService);
         _hiddenItemsService.InitHiddenItems(_levelName);
 
         GameObject character = InitCharacter(levelData);
+
+
         GameObject hud = _gameFactory.CreateHud();
         hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
         hud.GetComponentInChildren<StarsUI>().Construct(_hiddenItemsService);
@@ -99,5 +102,6 @@ public class LoadLevelState : IPayloadedState<string>
     private static void CamerFollow(GameObject target)
     {
         Camera.main.GetComponent<CameraFollow>().Follow(target);
+        Camera.main.GetComponent<HideBlockedWalls>().CharacterController = target.GetComponent<CharacterController>();
     }
 }

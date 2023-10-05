@@ -53,12 +53,15 @@ public class AudioMixerFloatSetting : Setting
     public void TurnOn()
     {
         currentValue = bufferValue;
+        if (currentValue == -80f)
+            currentValue = 0;
         Apply();
     }
 
     public void TurnOff()
     {
         bufferValue = currentValue;
+        Debug.Log(bufferValue);
         currentValue = minRealValue;
         Apply();
     }

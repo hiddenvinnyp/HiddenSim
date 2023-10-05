@@ -1,91 +1,236 @@
 fileFormatVersion: 2
 guid: 11513268302b562498f3c140346b22c8
-timeCreated: 1555755503
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Box003
-    100002: Box005
-    100004: Box006
-    100006: Box009
-    100008: Fir_v1_1
-    100010: Fir_v1_2
-    100012: //RootNode
-    100014: Grass_v1_1
-    100016: Grass_v1_2
-    100018: Pine_v1_1
-    100020: Pine_v1_2
-    100022: Floor_Grass_v1_1
-    100024: Floor_Grass_v1_2
-    100026: Grass_v1_3
-    100028: Grass_v2_1
-    400000: Box003
-    400002: Box005
-    400004: Box006
-    400006: Box009
-    400008: Fir_v1_1
-    400010: Fir_v1_2
-    400012: //RootNode
-    400014: Grass_v1_1
-    400016: Grass_v1_2
-    400018: Pine_v1_1
-    400020: Pine_v1_2
-    400022: Floor_Grass_v1_1
-    400024: Floor_Grass_v1_2
-    400026: Grass_v1_3
-    400028: Grass_v2_1
-    2300000: Box003
-    2300002: Box005
-    2300004: Box006
-    2300006: Box009
-    2300008: Fir_v1_1
-    2300010: Fir_v1_2
-    2300012: Grass_v1_1
-    2300014: Grass_v1_2
-    2300016: Pine_v1_1
-    2300018: Pine_v1_2
-    2300020: Floor_Grass_v1_1
-    2300022: Floor_Grass_v1_2
-    2300024: Grass_v1_3
-    2300026: Grass_v2_1
-    3300000: Box003
-    3300002: Box005
-    3300004: Box006
-    3300006: Box009
-    3300008: Fir_v1_1
-    3300010: Fir_v1_2
-    3300012: Grass_v1_1
-    3300014: Grass_v1_2
-    3300016: Pine_v1_1
-    3300018: Pine_v1_2
-    3300020: Floor_Grass_v1_1
-    3300022: Floor_Grass_v1_2
-    3300024: Grass_v1_3
-    3300026: Grass_v2_1
-    4300000: Fir_v1_1
-    4300002: Fir_v1_2
-    4300004: Pine_v1_1
-    4300006: Pine_v1_2
-    4300008: Grass_v1_1
-    4300010: Grass_v1_2
-    4300012: Box003
-    4300014: Box005
-    4300016: Box006
-    4300018: Box009
-    4300020: Floor_Grass_v1_1
-    4300022: Floor_Grass_v1_2
-    4300024: Grass_v1_3
-    4300026: Grass_v2_1
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Box003
+  - first:
+      1: 100002
+    second: Box005
+  - first:
+      1: 100004
+    second: Box006
+  - first:
+      1: 100006
+    second: Box009
+  - first:
+      1: 100008
+    second: Fir_v1_1
+  - first:
+      1: 100010
+    second: Fir_v1_2
+  - first:
+      1: 100012
+    second: //RootNode
+  - first:
+      1: 100014
+    second: Grass_v1_1
+  - first:
+      1: 100016
+    second: Grass_v1_2
+  - first:
+      1: 100018
+    second: Pine_v1_1
+  - first:
+      1: 100020
+    second: Pine_v1_2
+  - first:
+      1: 100022
+    second: Floor_Grass_v1_1
+  - first:
+      1: 100024
+    second: Floor_Grass_v1_2
+  - first:
+      1: 100026
+    second: Grass_v1_3
+  - first:
+      1: 100028
+    second: Grass_v2_1
+  - first:
+      4: 400000
+    second: Box003
+  - first:
+      4: 400002
+    second: Box005
+  - first:
+      4: 400004
+    second: Box006
+  - first:
+      4: 400006
+    second: Box009
+  - first:
+      4: 400008
+    second: Fir_v1_1
+  - first:
+      4: 400010
+    second: Fir_v1_2
+  - first:
+      4: 400012
+    second: //RootNode
+  - first:
+      4: 400014
+    second: Grass_v1_1
+  - first:
+      4: 400016
+    second: Grass_v1_2
+  - first:
+      4: 400018
+    second: Pine_v1_1
+  - first:
+      4: 400020
+    second: Pine_v1_2
+  - first:
+      4: 400022
+    second: Floor_Grass_v1_1
+  - first:
+      4: 400024
+    second: Floor_Grass_v1_2
+  - first:
+      4: 400026
+    second: Grass_v1_3
+  - first:
+      4: 400028
+    second: Grass_v2_1
+  - first:
+      23: 2300000
+    second: Box003
+  - first:
+      23: 2300002
+    second: Box005
+  - first:
+      23: 2300004
+    second: Box006
+  - first:
+      23: 2300006
+    second: Box009
+  - first:
+      23: 2300008
+    second: Fir_v1_1
+  - first:
+      23: 2300010
+    second: Fir_v1_2
+  - first:
+      23: 2300012
+    second: Grass_v1_1
+  - first:
+      23: 2300014
+    second: Grass_v1_2
+  - first:
+      23: 2300016
+    second: Pine_v1_1
+  - first:
+      23: 2300018
+    second: Pine_v1_2
+  - first:
+      23: 2300020
+    second: Floor_Grass_v1_1
+  - first:
+      23: 2300022
+    second: Floor_Grass_v1_2
+  - first:
+      23: 2300024
+    second: Grass_v1_3
+  - first:
+      23: 2300026
+    second: Grass_v2_1
+  - first:
+      33: 3300000
+    second: Box003
+  - first:
+      33: 3300002
+    second: Box005
+  - first:
+      33: 3300004
+    second: Box006
+  - first:
+      33: 3300006
+    second: Box009
+  - first:
+      33: 3300008
+    second: Fir_v1_1
+  - first:
+      33: 3300010
+    second: Fir_v1_2
+  - first:
+      33: 3300012
+    second: Grass_v1_1
+  - first:
+      33: 3300014
+    second: Grass_v1_2
+  - first:
+      33: 3300016
+    second: Pine_v1_1
+  - first:
+      33: 3300018
+    second: Pine_v1_2
+  - first:
+      33: 3300020
+    second: Floor_Grass_v1_1
+  - first:
+      33: 3300022
+    second: Floor_Grass_v1_2
+  - first:
+      33: 3300024
+    second: Grass_v1_3
+  - first:
+      33: 3300026
+    second: Grass_v2_1
+  - first:
+      43: 4300000
+    second: Fir_v1_1
+  - first:
+      43: 4300002
+    second: Fir_v1_2
+  - first:
+      43: 4300004
+    second: Pine_v1_1
+  - first:
+      43: 4300006
+    second: Pine_v1_2
+  - first:
+      43: 4300008
+    second: Grass_v1_1
+  - first:
+      43: 4300010
+    second: Grass_v1_2
+  - first:
+      43: 4300012
+    second: Box003
+  - first:
+      43: 4300014
+    second: Box005
+  - first:
+      43: 4300016
+    second: Box006
+  - first:
+      43: 4300018
+    second: Box009
+  - first:
+      43: 4300020
+    second: Floor_Grass_v1_1
+  - first:
+      43: 4300022
+    second: Floor_Grass_v1_2
+  - first:
+      43: 4300024
+    second: Grass_v1_3
+  - first:
+      43: 4300026
+    second: Grass_v2_1
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -93,12 +238,15 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -106,26 +254,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -135,14 +306,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

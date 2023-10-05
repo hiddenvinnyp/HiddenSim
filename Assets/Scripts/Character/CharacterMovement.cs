@@ -1,26 +1,29 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
+using System;
+using UnityEngine.EventSystems;
 
 [RequireComponent (typeof(NavMeshAgent))]
 public class CharacterMovement : MonoBehaviour
 {
-    public event UnityAction<Selectable> ItemReached;
+    //public event Action<Selectable> ItemReached;
     [SerializeField] private Animator _animator;
+    [SerializeField] private CharacterAttack _attack;
+    [SerializeField] private NavMeshAgent _agent;
     private bool _isWalking;
-    private NavMeshAgent _agent;
     private Camera _camera;
 
     private void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
         _camera = Camera.main;
-        Selectable.ItemSelected += OnItemSelected;
+        //Selectable.ItemSelected += OnItemSelected;
     }
 
     private void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject) return;
+        
         if (Input.GetMouseButton(0))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -28,24 +31,44 @@ public class CharacterMovement : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                _agent.SetDestination(hit.point);
+                NavMeshHit navHit;
+                float maxDistance = 0.5f;
+                while(!NavMesh.SamplePosition(hit.point, out navHit, maxDistance, NavMesh.AllAreas))
+                {
+                    maxDistance += 0.5f;
+                } 
+                _agent.SetDestination(navHit.position);       
+                
+                if (hit.collider.gameObject.GetComponent<Findable>())
+                {
+                }
+
+                if (hit.collider.gameObject.GetComponentInParent<EnemyHealth>())
+                {
+                    //transform.LookAt(hit.point);
+                    var lookDirection = hit.point - transform.position;
+
+                    var lookOrientation = Quaternion.LookRotation(lookDirection);
+
+                    transform.rotation = Quaternion.Lerp(transform.rotation, lookOrientation, 3f *
+                    Time.deltaTime);
+                    _attack.IsEnemy = true;
+                } else
+                    _attack.IsEnemy = false;
             }
         }
 
-        if (_agent.remainingDistance <= _agent.stoppingDistance)
-        {
+        if (_agent.remainingDistance <= _agent.stoppingDistance)        
             _isWalking = false;
-        } else
-        {
-            _isWalking = true;
-        }
+         else        
+            _isWalking = true;        
 
         _animator.SetBool("IsWalking", _isWalking);
     }
 
     private void OnDestroy()
     {
-        Selectable.ItemSelected -= OnItemSelected;
+        //Selectable.ItemSelected -= OnItemSelected;
     }
 
     private Coroutine coroutine;
@@ -68,10 +91,9 @@ public class CharacterMovement : MonoBehaviour
         while (timer <= time)
         {
             timer += Time.deltaTime;
-            print(timer);
             yield return null;
         }
         Debug.Log("FINALLY HERE");
-        ItemReached?.Invoke(item);
+        //ItemReached?.Invoke(item);
     }
 }

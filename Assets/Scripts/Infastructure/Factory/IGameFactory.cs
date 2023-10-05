@@ -13,4 +13,5 @@ public interface IGameFactory : IService
     GameObject CreateHud();
     RewardPiece CreateReward();
     void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId);
+    void RegisterItemService(IHiddenItemsService hiddenItemsService);
 }

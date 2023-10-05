@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   Name: Kitchen
-  Icon: {fileID: 21300022, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  Icon: {fileID: 21300000, guid: f7ed6a08b2f21e34fb2c65b511cb4cc8, type: 3}
   SceneName: FirstFloor
   HiddenAmount: 10

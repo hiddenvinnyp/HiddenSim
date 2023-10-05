@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 [RequireComponent (typeof(EnemyAnimator))]
@@ -12,6 +10,8 @@ public class Attack : MonoBehaviour
     public float EffectiveDistance = 0.5f;
     public float Damage = 5f;
     [SerializeField] private GameObject _damageFX;
+    [SerializeField] private AudioSource _damageSFX;
+    [SerializeField] private AudioClip[] _hitSounds;
 
     private Transform _characterTransform;
     private float _currentAttackCooldown;
@@ -55,6 +55,7 @@ public class Attack : MonoBehaviour
     private void OnAttackEnded()
     {
         Instantiate(_damageFX, StartPoint(), Quaternion.identity);
+        _damageSFX.PlayOneShot(_hitSounds[Random.Range(0, _hitSounds.Length)]);
         _currentAttackCooldown = AttackCooldown;
         _isAttacking = false;
     }

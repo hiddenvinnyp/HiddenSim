@@ -12,6 +12,7 @@ public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPoi
     [SerializeField] private GameObject _namePanel;
     [SerializeField] private GameObject _hintPanel;
     [SerializeField] private Image _found;
+    [SerializeField] private ButtonSound _sound;
     private HiddenItem _prefs;
 
     public string Name => _prefs.Name;
@@ -31,12 +32,12 @@ public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPoi
         _icon.sprite = _prefs.Icon;
         _name.text = _prefs.Name;
         _hint.text = _prefs.Hint;
-        print("apply props to " + Name);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         _hintPanel.SetActive(true);
+        _sound.OnClick();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -48,6 +49,7 @@ public class UIHiddenItemButton : MonoBehaviour, IScriptableObjectProperty, IPoi
     public void OnPointerEnter(PointerEventData eventData)
     {
         _namePanel.SetActive(true);
+        _sound.OnHover();
     }
 
     public void OnItemFound()

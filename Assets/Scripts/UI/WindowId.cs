@@ -3,5 +3,7 @@
     Unknown,
     Shop,
     Pause,
-    Options
+    Options,
+    LevelCompleted,
+    Defeat
 }

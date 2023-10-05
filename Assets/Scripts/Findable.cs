@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(OutlineMesh))]
 [RequireComponent(typeof(UniqueID))]
+[RequireComponent(typeof(AudioSource))]
 public class Findable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public event Action<string> ItemSelected;
@@ -12,9 +13,11 @@ public class Findable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 
     private string _id;
     private OutlineMesh _outline;
+    private AudioSource _pickUpSFX;
 
     private void Start()
     {
+        _pickUpSFX = GetComponent<AudioSource>();
         _outline = GetComponent<OutlineMesh>();
         _outline.enabled = false;
         _id = GetComponent<UniqueID>().Id;
@@ -26,6 +29,7 @@ public class Findable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         // Удалять предмет, помечать найденным в UI списке
         Debug.Log("Click on " + Prefs.Name);
         // IsFound = IsItemInList? true : false
+        _pickUpSFX.Play();
         ItemSelected?.Invoke(_id);
     }
 

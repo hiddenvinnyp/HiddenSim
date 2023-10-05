@@ -41,13 +41,14 @@ public class LoadProgressState : IState
         progress.CharacterState.MaxHP = 100;
         progress.CharacterState.ResetHP();
         progress.WeaponStats.Damage = 5f;
-        progress.WeaponStats.DamageRadius = 0.5f;
+        progress.WeaponStats.DamageRadius = 1f;
         progress.LevelProgressData = new LevelProgressData();
 
         foreach (string level in _staticData.GetAllLevels())
         {
             LevelData levelData = new LevelData();
             levelData.Score = 0;
+            levelData.HiddenObjectDataDictionary = new HiddenObjectDataDictionary();
             progress.LevelProgressData.Dictionary.Add(level, levelData);
         }
 

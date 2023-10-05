@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Forest
   Icon: {fileID: 21300000, guid: 90a9a33e39abc854188aecad83519184, type: 3}
-  SceneName: SampleScene
+  SceneName: FirstFloor
   HiddenAmount: 15

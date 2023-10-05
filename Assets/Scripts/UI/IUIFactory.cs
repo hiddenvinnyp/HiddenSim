@@ -1,5 +1,5 @@
 ﻿public interface IUIFactory : IService
 {
-    void CreateUIRoot();
+    void CreateUIRoot(string levelName);
     void CreateWindow(WindowId windowId);
 }

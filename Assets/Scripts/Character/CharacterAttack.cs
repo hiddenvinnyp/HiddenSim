@@ -3,8 +3,12 @@ using UnityEngine;
 [RequireComponent (typeof(CharacterAnimator), typeof(CharacterController))]
 public class CharacterAttack : MonoBehaviour, ISavedProgressReader
 {
+    public bool IsEnemy = false;
+
     [SerializeField] private CharacterAnimator _animator;
     [SerializeField] private CharacterController _characterController;
+    [SerializeField] private AudioSource _attackSFX;
+    [SerializeField] private AudioClip[] _sounds;
 
     private IInputService _input;
     private static int _layerMask;
@@ -26,7 +30,7 @@ public class CharacterAttack : MonoBehaviour, ISavedProgressReader
 
     private void Update()
     {
-        if (_input.IsAttackButtonUp() && !_animator.IsAttacking)
+        if (_input.IsAttackButtonUp() && !_animator.IsAttacking && IsEnemy)
             _animator.PlayAttack();
     }
 
@@ -42,13 +46,17 @@ public class CharacterAttack : MonoBehaviour, ISavedProgressReader
         {
             _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(_weaponStats.Damage);
         }
+        _attackSFX.PlayOneShot(_sounds[Random.Range(0, _sounds.Length)]);
     }
 
-    private int Hit() =>
-        Physics.OverlapSphereNonAlloc(StartPoint() + transform.forward, _weaponStats.DamageRadius, _hits, _layerMask);
+    private int Hit()
+    {
+        Debug.Log($"Start {StartPoint().x}, {StartPoint().y}, {StartPoint().z} /n {_weaponStats.DamageRadius}");
+        return Physics.OverlapSphereNonAlloc(StartPoint() + transform.forward, _weaponStats.DamageRadius, _hits, _layerMask);
+    }
 
     private Vector3 StartPoint() =>
-        new Vector3(transform.position.x, _characterController.center.y * 0.5f, transform.position.z);
+        new Vector3(transform.position.x, transform.position.y + _characterController.center.y * 0.5f /*_characterController.center.y * 0.5f*/, transform.position.z);
 
     public void LoadProgress(PlayerProgress progress) => _weaponStats = progress.WeaponStats;
 }

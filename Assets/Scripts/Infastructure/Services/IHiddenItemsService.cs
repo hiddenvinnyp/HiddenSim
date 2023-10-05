@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public interface IHiddenItemsService : IService
 {
-    List<string> SelectedItemsIds { get; }
+    List<string> SelectedItemsIds();
 
     event Action<string> FoundItem;
 

@@ -11,16 +11,28 @@ public class PauseWindow : WindowBase
     private bool _isMusicOn;
     private ISaveLoadService _saveLoadService;
 
-    public event Action GamePaused;
-    public event Action GameUnpaused;
-
     protected override void OnAwake()
     {
         base.OnAwake();
         _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
-        GamePaused?.Invoke();
+        
         CloseButton.onClick.AddListener(Unpaused);
+
+        _toggle.isOn = true;
+        if ((float)_audioMixerSetting.GetValue() == -80f)
+        {
+            _toggle.isOn = false;
+            _musicText.text = "Music off";
+            _audioMixerSetting.TurnOff();
+        }
+
         _isMusicOn = _toggle.isOn;
+    }
+
+    private void Start()
+    {
+        Paused();
+        
     }
 
     public void ToggleMusic()
@@ -37,17 +49,24 @@ public class PauseWindow : WindowBase
             _musicText.text = "Music off";
             _audioMixerSetting.TurnOff();
         }
+        _audioMixerSetting.Apply();
     }
 
     public void LoadMainMenu()
     {
         // TODO: не сохраняются спавны врагов
+        Unpaused();
         _saveLoadService.SaveProgress();
         StateMachine.Enter<LoadMenuState>();
     }
 
     private void Unpaused()
     {
-        GameUnpaused?.Invoke();
+        PauseService.UnPause();
+    }
+
+    private void Paused()
+    {
+        PauseService.Pause();
     }
 }

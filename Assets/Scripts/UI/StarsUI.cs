@@ -11,7 +11,7 @@ public class StarsUI : MonoBehaviour
     public void Construct(IHiddenItemsService hiddenItemsService)
     {
         _hiddenItemsService = hiddenItemsService;
-        _hiddenAmount = _hiddenItemsService.SelectedItemsIds.Count;
+        _hiddenAmount = _hiddenItemsService.SelectedItemsIds().Count;
         _foundObjectsAmount = _hiddenItemsService.TryGetFoundItemsAmount(out int foundAmount) ? foundAmount : 0;
         UpdateHPBar("");
         _hiddenItemsService.FoundItem += UpdateHPBar;

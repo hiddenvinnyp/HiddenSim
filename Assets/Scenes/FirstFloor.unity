@@ -3789,6 +3789,7 @@ GameObject:
   - component: {fileID: 650512205}
   - component: {fileID: 650512207}
   - component: {fileID: 650512206}
+  - component: {fileID: 650512208}
   m_Layer: 15
   m_Name: Door_main
   m_TagString: Untagged
@@ -3979,6 +3980,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &650512208
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650512200}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.045, y: 0.86, z: 0.43}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.42, z: 0.39}
+  m_TimeToStationary: 0.5
 --- !u!4 &661828886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 575161013135192976, guid: e1859574725f6824dbf077f95ab59e10, type: 3}
@@ -14387,6 +14404,7 @@ GameObject:
   - component: {fileID: 53111293146376946}
   - component: {fileID: 5681661760732101562}
   - component: {fileID: 589928366883463649}
+  - component: {fileID: 5681661760732101563}
   m_Layer: 6
   m_Name: Stairs
   m_TagString: Untagged
@@ -18149,6 +18167,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2723842077122164741}
   m_Mesh: {fileID: 4104380202958562290, guid: 7dcc7aa8fce6b7c4b942a91477801e88, type: 3}
+--- !u!114 &5681661760732101563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723842077122164741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5692817617981596112
 GameObject:
   m_ObjectHideFlags: 0
@@ -19835,6 +19872,7 @@ GameObject:
   - component: {fileID: 6490186257532270221}
   - component: {fileID: 4320911918854886249}
   - component: {fileID: 6475192559795277157}
+  - component: {fileID: 7525449103153471500}
   m_Layer: 6
   m_Name: Porch
   m_TagString: Untagged
@@ -19842,6 +19880,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!114 &7525449103153471500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525449103153471499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 0
+  m_AffectedAgents: ffffffff
 --- !u!33 &7550289944488866077
 MeshFilter:
   m_ObjectHideFlags: 0

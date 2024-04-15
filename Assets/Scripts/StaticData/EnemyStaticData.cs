@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/Enemy")]
 public class EnemyStaticData : ScriptableObject
@@ -13,5 +14,5 @@ public class EnemyStaticData : ScriptableObject
     public int MinLoot;
     public int MaxLoot;
 
-    public GameObject Prefab;
+    public AssetReferenceGameObject PrefabReference;
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -48,12 +49,14 @@ public class GameFactory : IGameFactory
         return hud;
     }
 
-    public GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent)
+    public async Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Transform parent)
     {
         EnemyStaticData enemyData = _staticData.ForEnemy(enemyTypeId);
-        GameObject enemy = Object.Instantiate(enemyData.Prefab, parent.position, Quaternion.identity);
 
-        var health = enemy.GetComponent<IHealth>();
+        GameObject prefab = await _assets.Load<GameObject>(enemyData.PrefabReference);
+        GameObject enemy = Object.Instantiate(prefab, parent.position, Quaternion.identity);
+
+        IHealth health = enemy.GetComponent<IHealth>();
         health.CurrentHealth = enemyData.HP;
         health.MaxHealth = enemyData.HP;
 
@@ -61,11 +64,11 @@ public class GameFactory : IGameFactory
         enemy.GetComponent<AgentMoveToPlayer>().Construct(_characterGameObject.transform);
         enemy.GetComponent<NavMeshAgent>().speed = enemyData.MoveSpeed;
 
-        var rewardSpawner = enemy.GetComponentInChildren<RewardSpawner>();
+        RewardSpawner rewardSpawner = enemy.GetComponentInChildren<RewardSpawner>();
         rewardSpawner.SetReward(enemyData.MinLoot, enemyData.MaxLoot);
         rewardSpawner.Construct(this);
 
-        var attack = enemy.GetComponent<Attack>();
+        Attack attack = enemy.GetComponent<Attack>();
         attack.Construct(_characterGameObject.transform);
         attack.Damage = enemyData.Damage;
         attack.Cleavage = enemyData.Cleavege;
@@ -110,6 +113,8 @@ public class GameFactory : IGameFactory
     {
         ProgressReaders.Clear();
         ProgressWriters.Clear();
+
+        _assets.CleanUp();
     }
 
     private GameObject InstantiateRegistered(string prefabPath, Vector3 position)

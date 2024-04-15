@@ -32,9 +32,9 @@ public class SpawnPoint : MonoBehaviour, ISavedProgress
         }
     }
 
-    private void Spawn()
+    private async void Spawn()
     {
-        var enemy = _factory.CreateEnemy(_enemyTypeId, transform);
+        var enemy = await _factory.CreateEnemy(_enemyTypeId, transform);
         _enemyDeath = enemy.GetComponent<EnemyDeath>();
         _enemyDeath.DeathHappend += Slay;
     }

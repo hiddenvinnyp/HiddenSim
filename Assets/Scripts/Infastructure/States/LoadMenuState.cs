@@ -23,7 +23,7 @@ public class LoadMenuState : IState
     public void Enter()
     {
         _curtain.Show();
-        _gameFactory.Cleanup();
+        _gameFactory.CleanUp();
         _sceneLoader.Load("MainMenu", OnLoaded);
     }
 

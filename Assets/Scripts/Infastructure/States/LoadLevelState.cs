@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,7 +33,8 @@ public class LoadLevelState : IPayloadedState<string>
         _levelName = levelName;
         string sceneName = _staticData.ForLevel(levelName).SceneName;
         _curtain.Show();
-        _gameFactory.Cleanup();
+        _gameFactory.CleanUp();
+        _gameFactory.WarmUp();
         _sceneLoader.Load(sceneName, OnLoaded);
     }
 
@@ -41,10 +43,10 @@ public class LoadLevelState : IPayloadedState<string>
         _curtain.Hide();
     }
 
-    private void OnLoaded()
+    private async void OnLoaded()
     {
         InitUIRoot();
-        InitGameWorld();
+        await InitGameWorld();
         InformProgressReaders();
         _stateMachine.Enter<GameLoopState>();
     }
@@ -58,13 +60,13 @@ public class LoadLevelState : IPayloadedState<string>
             progressReader.LoadProgress(_progressService.Progress);
     }
 
-    private void InitGameWorld()
+    private async Task InitGameWorld()
     {
         string sceneName = SceneManager.GetActiveScene().name;
         LevelSpawnersStaticData levelData = _staticData.ForLevelSpawners(sceneName);
 
-        InitSpawners(levelData);
-        InitRewardPieces();
+        await InitSpawners(levelData);
+        await InitRewardPieces();
 
         _gameFactory.RegisterItemService(_hiddenItemsService);
         _hiddenItemsService.InitHiddenItems(_levelName);
@@ -79,11 +81,11 @@ public class LoadLevelState : IPayloadedState<string>
         CamerFollow(character);
     }
 
-    private void InitRewardPieces()
+    private async Task InitRewardPieces()
     {
         foreach (string key in _progressService.Progress.WorldData.RewardData.RewardPiecesOnScene.Dictionary.Keys)
         {
-            RewardPiece rewardPiece = _gameFactory.CreateReward();
+            RewardPiece rewardPiece = await _gameFactory.CreateReward();
             rewardPiece.GetComponent<UniqueID>().Id = key;
         }
     }
@@ -91,12 +93,10 @@ public class LoadLevelState : IPayloadedState<string>
     private GameObject InitCharacter(LevelSpawnersStaticData levelData) =>
         _gameFactory.CreateCharacter(levelData.InitialHeroPosition);
 
-    private void InitSpawners(LevelSpawnersStaticData levelData)
+    private async Task InitSpawners(LevelSpawnersStaticData levelData)
     {
         foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
-        {
-            _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyTypeId);
-        }
+            await _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyTypeId);        
     }
 
     private static void CamerFollow(GameObject target)

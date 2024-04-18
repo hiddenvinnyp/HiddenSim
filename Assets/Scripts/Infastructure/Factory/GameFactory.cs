@@ -25,22 +25,29 @@ public class GameFactory : IGameFactory
         _stateMachine = stateMachine;
     }
 
-    public RewardPiece CreateReward()
+    public async void WarmUp()
     {
-        var rewardPiece = InstantiateRegistered(AssetPath.RewardCoin).GetComponent<RewardPiece>();
+        await _assets.Load<GameObject>(AssetAddress.RewardCoin);
+        await _assets.Load<GameObject>(AssetAddress.Spawner);
+    }
+
+    public async Task<RewardPiece> CreateReward()
+    {
+        GameObject prefab = await _assets.Load<GameObject>(AssetAddress.RewardCoin);
+        RewardPiece rewardPiece = InstantiateRegistered(prefab).GetComponent<RewardPiece>();
         rewardPiece.Construct(_progressService.Progress.WorldData);
         return rewardPiece;
     }
 
     public GameObject CreateCharacter(Vector3 initialPoint)
     {
-        _characterGameObject = InstantiateRegistered(AssetPath.CharacterPath, initialPoint);
+        _characterGameObject = InstantiateRegistered(AssetAddress.CharacterPath, initialPoint);
         return _characterGameObject;
     }
 
     public GameObject CreateHud()
     {
-        GameObject hud = InstantiateRegistered(AssetPath.HUDPath);
+        GameObject hud = InstantiateRegistered(AssetAddress.HUDPath);
         hud.GetComponentInChildren<CoinCounter>().Construct(_progressService.Progress.WorldData);
 
         foreach (OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>())
@@ -77,9 +84,10 @@ public class GameFactory : IGameFactory
         return enemy;
     }
 
-    public void CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId)
+    public async Task CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId)
     {
-        SpawnPoint spawner = InstantiateRegistered(AssetPath.Spawner, position).GetComponent<SpawnPoint>();
+        GameObject prefab = await _assets.Load<GameObject>(AssetAddress.Spawner);
+        SpawnPoint spawner = InstantiateRegistered(prefab, position).GetComponent<SpawnPoint>();
         spawner.Construct(this);
         spawner.Id = spawnerId;
         spawner.EnemyTypeId = enemyTypeId;
@@ -91,7 +99,7 @@ public class GameFactory : IGameFactory
             position.z = 3;
         position.x *= 1.73f;
 
-        var episodeHex = InstantiateRegistered(AssetPath.EpisodeHex, position).GetComponent<EpisodeHex>();
+        var episodeHex = InstantiateRegistered(AssetAddress.EpisodeHex, position).GetComponent<EpisodeHex>();
         //Debug.Log(episodeHex.GetComponentInChildren<MeshCollider>().bounds.size.x);
 
         episodeHex.Name = episodeName;
@@ -109,12 +117,26 @@ public class GameFactory : IGameFactory
             Register(progress);
     }
 
-    public void Cleanup()
+    public void CleanUp()
     {
         ProgressReaders.Clear();
         ProgressWriters.Clear();
 
         _assets.CleanUp();
+    }
+
+    private GameObject InstantiateRegistered(GameObject prefab)
+    {
+        GameObject gameObject = Object.Instantiate(prefab);
+        RegisterProgressWatchers(gameObject);
+        return gameObject;
+    }
+
+    private GameObject InstantiateRegistered(GameObject prefab, Vector3 position)
+    {
+        GameObject gameObject = Object.Instantiate(prefab, position, Quaternion.identity);
+        RegisterProgressWatchers(gameObject);
+        return gameObject;
     }
 
     private GameObject InstantiateRegistered(string prefabPath, Vector3 position)

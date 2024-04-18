@@ -21,20 +21,25 @@ public class AssetProvider : IAssets
         return Object.Instantiate(prefab, point, Quaternion.identity);
     }
 
+    public void Initialize()
+    {
+        Addressables.InitializeAsync();
+    }
+
     public async Task<T> Load<T>(AssetReference assetReference) where T : class
     {
         if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
             return completedHandle.Result as T;
 
-        AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetReference);
-        handle.Completed += h =>
-        {
-            _completedCache[assetReference.AssetGUID] = h;
-        };
+        return await RunWithCacheOnComplete(assetReference.AssetGUID, Addressables.LoadAssetAsync<T>(assetReference));
+    }
 
-        AddHandle(assetReference.AssetGUID, handle);
+    public async Task<T> Load<T>(string address) where T : class
+    {
+        if (_completedCache.TryGetValue(address, out AsyncOperationHandle completedHandle))
+            return completedHandle.Result as T;
 
-        return await handle.Task;
+        return await RunWithCacheOnComplete(address, Addressables.LoadAssetAsync<T>(address));
     }
 
     public void CleanUp()
@@ -42,6 +47,18 @@ public class AssetProvider : IAssets
         foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
             foreach (AsyncOperationHandle handle in resourceHandles)
                 Addressables.Release(handle);
+
+        _completedCache.Clear();
+        _handles.Clear();
+    }
+
+    private async Task<T> RunWithCacheOnComplete<T>(string cacheKey, AsyncOperationHandle<T> handle) where T : class
+    {
+        handle.Completed += completeHandle => _completedCache[cacheKey] = completeHandle;
+
+        AddHandle(cacheKey, handle);
+
+        return await handle.Task;
     }
 
     private void AddHandle<T>(string key, AsyncOperationHandle<T> handle) where T : class

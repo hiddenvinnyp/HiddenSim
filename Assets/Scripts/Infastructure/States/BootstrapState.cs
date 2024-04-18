@@ -34,31 +34,38 @@ public class BootstrapState : IState
     private void RegisterServices()
     {
         RegisterStaticData();
-        
+
         _services.RegisterSingle<IGameStateMachine>(_stateMachine);
         _services.RegisterSingle<IInputService>(InputService());
-        _services.RegisterSingle<IAssets>(new AssetProvider());
+        RegisterAssetProvider();
         _services.RegisterSingle<IProgressService>(new ProgressService());
         _services.RegisterSingle<IPauseService>(new PauseService());
 
         _services.RegisterSingle<IUIFactory>(new UIFactory(
-            _services.Single<IAssets>(), 
-            _services.Single<IStaticDataService>(), 
+            _services.Single<IAssets>(),
+            _services.Single<IStaticDataService>(),
             _services.Single<IProgressService>(),
             _services.Single<IGameStateMachine>(),
             _services.Single<IPauseService>()));
 
         _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
-        
+
         _services.RegisterSingle<IGameFactory>(new GameFactory(
-            _services.Single<IAssets>(), 
-            _services.Single<IStaticDataService>(), 
-            _services.Single<IProgressService>(), 
+            _services.Single<IAssets>(),
+            _services.Single<IStaticDataService>(),
+            _services.Single<IProgressService>(),
             _services.Single<IWindowService>(),
             _services.Single<IGameStateMachine>()));
 
         _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IProgressService>(), _services.Single<IGameFactory>()));
         _services.RegisterSingle<IHiddenItemsService>(new HiddenItemsService(_services.Single<IProgressService>(), _services.Single<IStaticDataService>(), _services.Single<ISaveLoadService>(), _services.Single<IWindowService>()));
+    }
+
+    private void RegisterAssetProvider()
+    {
+        var assetProvider = new AssetProvider();
+        assetProvider.Initialize();
+        _services.RegisterSingle<IAssets>(assetProvider);
     }
 
     private void RegisterStaticData()

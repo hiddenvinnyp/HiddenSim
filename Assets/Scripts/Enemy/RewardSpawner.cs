@@ -24,9 +24,9 @@ public class RewardSpawner : MonoBehaviour
         _enemyDeath.DeathHappend += SpawnReward;
     }
 
-    private void SpawnReward()
+    private async void SpawnReward()
     {
-        RewardPiece reward = _factory.CreateReward();
+        RewardPiece reward = await _factory.CreateReward();
         reward.transform.position = transform.position;
 
         var rewardItem = new Reward

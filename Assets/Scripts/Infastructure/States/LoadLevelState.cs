@@ -45,14 +45,14 @@ public class LoadLevelState : IPayloadedState<string>
 
     private async void OnLoaded()
     {
-        InitUIRoot();
+        await InitUIRootAsync();
         await InitGameWorld();
         InformProgressReaders();
         _stateMachine.Enter<GameLoopState>();
     }
 
-    private void InitUIRoot() => 
-        _uiFactory.CreateUIRoot(_levelName);
+    private async Task InitUIRootAsync() => 
+        await _uiFactory.CreateUIRoot(_levelName);
 
     private void InformProgressReaders()
     {
@@ -71,10 +71,10 @@ public class LoadLevelState : IPayloadedState<string>
         _gameFactory.RegisterItemService(_hiddenItemsService);
         _hiddenItemsService.InitHiddenItems(_levelName);
 
-        GameObject character = InitCharacter(levelData);
+        GameObject character = await InitCharacter(levelData);
 
 
-        GameObject hud = _gameFactory.CreateHud();
+        GameObject hud = await _gameFactory.CreateHud();
         hud.GetComponentInChildren<ActorUI>().Construct(character.GetComponent<CharacterHealth>());
         hud.GetComponentInChildren<StarsUI>().Construct(_hiddenItemsService);
         hud.GetComponentInChildren<ItemsPanelUI>().Construct(_hiddenItemsService);
@@ -90,8 +90,8 @@ public class LoadLevelState : IPayloadedState<string>
         }
     }
 
-    private GameObject InitCharacter(LevelSpawnersStaticData levelData) =>
-        _gameFactory.CreateCharacter(levelData.InitialHeroPosition);
+    private async Task<GameObject> InitCharacter(LevelSpawnersStaticData levelData) =>
+        await _gameFactory.CreateCharacter(levelData.InitialHeroPosition);
 
     private async Task InitSpawners(LevelSpawnersStaticData levelData)
     {

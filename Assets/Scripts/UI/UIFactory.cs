@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 
 public class UIFactory : IUIFactory
 {
-    private const string UIRootPath = "Prefabs/UI/RootUICanvas";
+    private const string UIRootPath = "RootUICanvas";
     private readonly IAssets _assets;
     private readonly IStaticDataService _staticData;
     private readonly IProgressService _progressService;
@@ -20,10 +21,11 @@ public class UIFactory : IUIFactory
         _pauseService = pauseService;
     }
 
-    public void CreateUIRoot(string levelName)
+    public async Task CreateUIRoot(string levelName)
     {
         _levelName = levelName;
-        _uiRoot = _assets.Instantiate(UIRootPath).transform;
+        GameObject root = await _assets.Instantiate(UIRootPath);
+        _uiRoot = root.transform;
     }
 
     public void CreateWindow(WindowId windowId)

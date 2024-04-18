@@ -8,10 +8,10 @@ public interface IGameFactory : IService
     List<ISavedProgress> ProgressWriters { get; }
 
     void CleanUp();
-    GameObject CreateCharacter(Vector3 initialPoint);
+    Task<GameObject> CreateCharacter(Vector3 initialPoint);
     Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Transform parent);
-    void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, bool isLocked);
-    GameObject CreateHud();
+    Task CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, bool isLocked);
+    Task<GameObject> CreateHud();
     Task<RewardPiece> CreateReward();
     Task CreateSpawner(Vector3 position, string spawnerId, EnemyTypeId enemyTypeId);
     void RegisterItemService(IHiddenItemsService hiddenItemsService);

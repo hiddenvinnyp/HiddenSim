@@ -8,23 +8,17 @@ public class AssetProvider : IAssets
 {
     private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new Dictionary<string, AsyncOperationHandle>();
     private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new Dictionary<string, List<AsyncOperationHandle>>();
-    
-    public GameObject Instantiate(string path)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab);
-    }
-
-    public GameObject Instantiate(string path, Vector3 point)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab, point, Quaternion.identity);
-    }
 
     public void Initialize()
     {
         Addressables.InitializeAsync();
     }
+
+    public Task<GameObject> Instantiate(string path) =>
+        Addressables.InstantiateAsync(path).Task;
+
+    public Task<GameObject> Instantiate(string path, Vector3 point) =>
+        Addressables.InstantiateAsync(path, point, Quaternion.identity).Task;
 
     public async Task<T> Load<T>(AssetReference assetReference) where T : class
     {

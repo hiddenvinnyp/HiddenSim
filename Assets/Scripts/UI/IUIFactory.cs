@@ -1,5 +1,7 @@
-﻿public interface IUIFactory : IService
+﻿using System.Threading.Tasks;
+
+public interface IUIFactory : IService
 {
-    void CreateUIRoot(string levelName);
+    Task CreateUIRoot(string levelName);
     void CreateWindow(WindowId windowId);
 }

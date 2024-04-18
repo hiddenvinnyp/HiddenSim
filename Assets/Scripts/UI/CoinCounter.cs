@@ -10,10 +10,6 @@ public class CoinCounter : MonoBehaviour
     {
         _worldData = worldData;
         _worldData.RewardData.Changed += UpdateCounter;
-    }
-
-    private void Start()
-    {
         UpdateCounter();
     }
 

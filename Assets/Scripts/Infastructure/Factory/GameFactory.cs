@@ -39,15 +39,15 @@ public class GameFactory : IGameFactory
         return rewardPiece;
     }
 
-    public GameObject CreateCharacter(Vector3 initialPoint)
+    public async Task<GameObject> CreateCharacter(Vector3 initialPoint)
     {
-        _characterGameObject = InstantiateRegistered(AssetAddress.CharacterPath, initialPoint);
+        _characterGameObject = await InstantiateRegisteredAsync(AssetAddress.CharacterPath, initialPoint);
         return _characterGameObject;
     }
 
-    public GameObject CreateHud()
+    public async Task<GameObject> CreateHud()
     {
-        GameObject hud = InstantiateRegistered(AssetAddress.HUDPath);
+        GameObject hud = await InstantiateRegisteredAsync(AssetAddress.HUDPath);
         hud.GetComponentInChildren<CoinCounter>().Construct(_progressService.Progress.WorldData);
 
         foreach (OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>())
@@ -93,13 +93,14 @@ public class GameFactory : IGameFactory
         spawner.EnemyTypeId = enemyTypeId;
     }
 
-    public void CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, bool isLocked)
+    public async Task CreateEpisodeHex(Vector3 position, string episodeName, GameObject episodeVisualModel, string episodeScene, LevelStaticData[] levels, bool isLocked)
     {
         if (position.x % 2 != 0)
             position.z = 3;
         position.x *= 1.73f;
 
-        var episodeHex = InstantiateRegistered(AssetAddress.EpisodeHex, position).GetComponent<EpisodeHex>();
+        var episodeHexPrefab = await InstantiateRegisteredAsync(AssetAddress.EpisodeHex, position);
+        EpisodeHex episodeHex = episodeHexPrefab.GetComponent<EpisodeHex>();
         //Debug.Log(episodeHex.GetComponentInChildren<MeshCollider>().bounds.size.x);
 
         episodeHex.Name = episodeName;
@@ -139,16 +140,16 @@ public class GameFactory : IGameFactory
         return gameObject;
     }
 
-    private GameObject InstantiateRegistered(string prefabPath, Vector3 position)
+    private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath, Vector3 position)
     {
-        GameObject gameObject = _assets.Instantiate(prefabPath, position);
+        GameObject gameObject = await _assets.Instantiate(prefabPath, position);
         RegisterProgressWatchers(gameObject);
         return gameObject;
     }
 
-    private GameObject InstantiateRegistered(string prefabPath)
+    private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath)
     {
-        GameObject gameObject = _assets.Instantiate(prefabPath);
+        GameObject gameObject = await _assets.Instantiate(prefabPath);
         RegisterProgressWatchers(gameObject);
         return gameObject;
     }

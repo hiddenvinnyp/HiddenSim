@@ -37,6 +37,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d6281ea364432447a3da21f2d8624d9
+    m_Address: PlayerA
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff24ec0beb7bdf24e9eccbd6a04da9ad
+    m_Address: HUD
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e24c5e6bad647e44ad57b9fb670aa6c
+    m_Address: Hex Plate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7884fda82a0614f4696250cc6ac815cd
+    m_Address: RootUICanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bba362bc1dc15d7428b4ecbba2dc7cc2, type: 2}
   m_SchemaSet:
